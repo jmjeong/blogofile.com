@@ -1,0 +1,40 @@
+* Introduciton to Orgmode				       :example:orgmode:
+
+Org-mode is for keeping notes, maintaining ToDo lists, doing project
+planning, and authoring with a fast and effective plain-text system.
+
+** Simplicity
+
+Org-mode is a simple outliner for note-taking and list management. You
+can learn the basics for using it in five minutes. This may be all you
+need, and Org-mode will not impose more complex features on you.
+
+** Portability
+
+Org files are plain text. You can view and edit them in any
+editor. Your data is yours forever. Org-mode runs in Emacs, which is
+available for nearly every platform.  Depth Org-mode will not let you
+down when you need more than a simple outline. The full feature set is
+both broad and deep. The typical answer to "Can it do X?" is "Yes!".
+
+** Flexibility
+
+Org-mode is like a Swiss army knife. People use it for Getting Things
+Done (GTD), as a Day Planner, as a Notebook, for Web and PDF
+Authoring, and much more.  Support Org-mode is supported by an active
+mailing list where questions are answered quickly and effectively.
+
+** It's free!
+
+Org is open source software, it is free, like Emacs.
+
+** Tag example
+
+even more
+
+This is *bold* /italics/ _underline_ [[http://emacs.org][Emacs]]
+
+** Table example
+
+| country | country |
+|    123  | 123     |
