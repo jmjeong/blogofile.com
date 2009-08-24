@@ -16,10 +16,9 @@
       <li><a href="/">Home</a></li>
       <li><a href="/documentation">Documentation</a></li>
       <li><a href="/community">Community</a></li>
-      <li><a href="${config.blog_path}">Blog</a></li>
+      <li><a href="${config.util.blog_path_helper('')}">Blog</a></li>
     </ul>
   </div>
-  
   <div id="search">    
     <form id="searchform" method="get" action="http://www.google.com/search">
       <input type="hidden" name="ie" value="UTF-8">
