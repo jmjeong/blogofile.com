@@ -16,7 +16,7 @@ body {
     padding: 0px;
 }
 div#content {
-    width: 1000px;
+    width: 900px;
     margin: 0 auto;
     padding: 0px;
     background: #ffffff;
@@ -25,7 +25,7 @@ div#content {
 /********** Header **********/
 div#header {
     background-color:#666666;
-    height:75px;
+    height:55px;
     margin:0;
     padding:0;
 }
@@ -100,7 +100,7 @@ div#prose_block {
     float: left;
     margin:0;
     padding:0 0 20px 20px;
-    width:680px;
+    width:580px;
 }
 div#prose_block h2 {
     font-size:18px;
@@ -126,8 +126,8 @@ div.blog_post {
     padding: 0;
 }
 .post_prose pre {
-    background:#F1F1FF none repeat scroll 0 0;
-    border:1px dashed #BBBBBB;
+    background:#F1F1FF none repeat scroll 0 0; 
+    border:1px solid #BBBBBB;
     color:#000000;
     font-size:0.85em;
     overflow:auto;
@@ -142,6 +142,7 @@ div.blog_post {
     margin-bottom: 15px;
     margin-left: 5px;
 }
+
 h2.blog_post_title a:hover {
     background:transparent none repeat scroll 0 0;
     color:#6EB9E0;
@@ -186,7 +187,7 @@ hr.interblog {
 /********** Sidebar **********/
 div#right_sidebar {
     float: right;
-    width:270px;
+    width:220px;
     font-size: 11px;
     line-height: 1.5em;
     margin: 0;

@@ -1,3 +1,5 @@
+#!/usr/bin/env python
+# -*- coding: utf-8 -*-
 ######################################################################
 # This is the main Blogofile configuration file.
 # www.Blogofile.com
@@ -46,11 +48,11 @@ blog_path = "/blog"
 
 ## blog_name -- Your Blog's name.
 # This is used repeatedly in default blog templates
-blog_name        = "Blogofile"
+blog_name        = "Jaemok Jeong"
 
 ## blog_description -- A short one line description of the blog
 # used in the RSS/Atom feeds.
-blog_description = "A static blog engine/compiler"
+blog_description = u"정재목"
 
 ## blog_timezone -- the timezone that you normally write your blog posts from
 blog_timezone    = "ROK"
@@ -108,7 +110,7 @@ blog_custom_index = False
 #If you want to generate excerpts of your posts in addition to the
 #full post content turn this feature on
 post_excerpt_enabled     = True
-post_excerpt_word_length = 25
+post_excerpt_word_length = 30
 #Also, if you don't like the way the post excerpt is generated
 #You can define a new function
 #below called post_excerpt(content, num_words)

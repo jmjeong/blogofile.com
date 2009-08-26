@@ -9,14 +9,13 @@
     </a>
   </h1>
 </div>
-<a href="http://github.com/EnigmaCurry/blogofile"><img style="position: absolute; top: 0; right: 0; border: 0;" src="http://s3.amazonaws.com/github/ribbons/forkme_right_darkblue_121621.png" alt="Fork me on GitHub" /></a>
 <div id="top_bar">
   <div class="ButtonBar">
     <ul>
       <li><a href="/">Home</a></li>
-      <li><a href="/documentation">Documentation</a></li>
-      <li><a href="/community">Community</a></li>
-      <li><a href="${config.util.blog_path_helper('')}">Blog</a></li>
+      <li><a href="http://jmjeong.com/old">Previous Homepage</a></li>
+      <li><a href="http://wiki.jmjeong.com">Palm Wiki</a></li>
+      <li><a href="${config.util.blog_path_helper('')}">Blog List</a></li>
     </ul>
   </div>
   <div id="search">    
