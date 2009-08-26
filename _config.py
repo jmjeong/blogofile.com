@@ -53,7 +53,7 @@ blog_name        = "Blogofile"
 blog_description = "A static blog engine/compiler"
 
 ## blog_timezone -- the timezone that you normally write your blog posts from
-blog_timezone    = "US/Eastern"
+blog_timezone    = "ROK"
 #Blog posts per page
 blog_posts_per_page = 5
 #If permalink is not defined in post article, this value is used
@@ -76,19 +76,19 @@ blog_posts_per_page = 5
 # :filename           -> article's filename without suffix
 blog_auto_permalink_enabled = True
 # This is relative to site_url
-blog_auto_permalink         = "/blog/:year/:month/:day/:title"
+blog_auto_permalink         = "/blog/:filename"
 
 ######################################################################
 # Intermediate Settings
 ######################################################################
 #### Disqus.com comment integration ####
 disqus_enabled = True
-disqus_name    = "blogofile"
+disqus_name    = "jmjeong"
 
 #### Emacs org-mode Converter ####
-orgmode_enabled = True
+emacs_orgmode_enabled = True
 # emacs binary (orgmode must be installed)
-emacs_binary    = "/usr/bin/emacs"               # emacs 22 or 23 is recommended
+emacs_binary    = "/Applications/Emacs.app/Contents/MacOS/Emacs"  # 22 or 23 is recommended
 emacs_preload_elisp = "_emacs/setup.el"          # preloaded elisp file
 orgmode_preamble = r"#+OPTIONS: H:3 num:nil toc:nil \n:nil"   # added in preamble
 
