@@ -35,7 +35,7 @@ Org is open source software, it is free, like Emacs.
 
 int main()
 {
-   printf("hello world\n");
+  printf("hello world\n");   // 한글
 }
 #+END_SRC
 
