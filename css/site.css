@@ -9,7 +9,7 @@ a {
 /********** Body **********/
 html {overflow-y: scroll;}
 body {
-    background-color:#666666;
+    /* background-color:#666666; */
     color:#333333;
     font-family: "Bitstream Vera Sans", "helvetica", "arial", sans-serif;
     margin:0;
@@ -24,8 +24,8 @@ div#content {
 
 /********** Header **********/
 div#header {
-    background-color:#666666;
-    height:55px;
+    background-color:#f7f7f7;
+    height:45px;
     margin:0;
     padding:0;
 }
@@ -33,20 +33,20 @@ div#header h1 {
     background-color:transparent;
     color:white;
     font-family:monospace;
-    font-size:32px;
+    font-size:28px;
     letter-spacing:0.1em;
-    padding:20px 0 20px 0;
+    padding:5px 0 5px 0;
     text-decoration:none;
 }
 div#header a{
     text-decoration: none;
 }
 #blog_name {
-    color:orange;
-    font-family:monospace;
-    font-size:32px;
+    color:black;
+    font-family: Arial,Helvetica,sans-serif;
+    font-size:28px;
     letter-spacing:0.1em;
-    padding:20px 0 20px 0;
+    padding:10px 5px 10px 5px;
     text-decoration:none;
 }
 #blog_logo {
@@ -66,7 +66,7 @@ div#header a{
 #top_bar li {
     display:inline;
     list-style-type:none;
-    background:#FFFFFF none repeat scroll 0 0;
+    background:#f0f0f0 none repeat scroll 0 0;
     color:#1E4C62;
     font-weight:bold;
     margin:0 3px 0 0;
@@ -75,10 +75,10 @@ div#header a{
     cursor: pointer;
 }
 #top_bar {
-    background:#303030 none repeat scroll 0 0;
+    background:darkgray none repeat scroll 0 0;
     font-size:12px;
     margin:0;
-    padding:15px 0 6px 0;
+    padding:8px 0 4px 0;
 }
 #search {
     float:right;
@@ -145,7 +145,7 @@ div.blog_post {
 
 h2.blog_post_title a:hover {
     background:transparent none repeat scroll 0 0;
-    color:#6EB9E0;
+    /* color:#6EB9E0; */
 }
 h2.blog_post_title a {
     color:#0090DA;
