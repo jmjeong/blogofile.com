@@ -2,9 +2,8 @@
 
 (require 'htmlize)
 (require 'org)
-;(require 'color-theme)
 
-(global-font-lock-mode t)
-
+;(global-font-lock-mode t)
+(prefer-coding-system 'utf-8)
 (add-to-list 'auto-mode-alist '("\\.\\(org\\)$" . org-mode))
-(message "loaded")
+;(message "loaded")
