@@ -1,0 +1,54 @@
+* Orgmode를 이용한 Blogging 	<2009-08-22 Sat 15:22>			 :emacs:blog:
+
+Emacs의 [[http://orgmode.org][orgmode]]는 노트, 스케줄 관리, 문서 저작등을 위한 major 모드이다.  Orgmode 기능 중에 하나인
+export를 이용하면 작성한 문서를 latex, html, pdf등으로 변환할 수 있다. 개인적으로 회의록이나 일정,
+생일, 메일등을 orgmode를 이용하여 관리를 하고 있다. Orgmode를 통해 홈페이지에도 글을 올릴 수 있으면
+좋겠다는 생각을 했었고, 관련 solution에 대해서 고민을 해 보았다. 
+
++현재 운영 중인+ 홈페이지는 wiki로 되어 있다. Wiki는 간단한 문법으로 구성되어 있어 static html파일에
+비해 문서 작성이 용이한 장점이 있다. 온라인상으로 페이지를 편집하고 글을 올리기 쉬운 장점과 함께, 
+브라우저의 edit 창을 통한 편집하고 올리는 것은 긴 글에는 적합하지 않다. (한동안 firefox의 [[https://addons.mozilla.org/en-US/firefox/addon/4125][It's All Text!]]
+plugin을 시도했으나 역시 마우스 클릭 등이 필요해서 불편했다)  
+
+Emacs를 통해서 블로그에 직접 글을 올리는 방법으로 몇가지 solution이 나와 있다(참조: [[http://aidi.tistory.com/entry/emacs-weblog-%EC%9D%B4%EC%9A%A9%ED%95%98%EA%B8%B0-2%ED%83%84-1][Emacs를 통해서 blog
+작성하기]]) 막상 이런 solution을 사용해보면 뭔가 2% 부족함을 느끼게 된다.  개인적으로는 XML-RPC를
+이용한 wiki editing mode중에 가장 완성도 높은 것이 [[http://jmjeong.com/index.php%3Fdisplay%3DEmacs/TracWiki][TracWiki]]였다.
+
+몇 년전부터 todo list에만 올려두고 미뤄왔던 홈페이지 개편 생각이, 최근 github에서 활용되는 [[http://github.com/mojombo/jekyll/tree/master][jekyll]]과 
+Ordmode의 [[http://orgmode.org/worg/][Worg]] 프로젝트를 보고 다시 고민을 하게 되었다. 특히 Worg는 git와 orgmode의 export를 통해 
+homepage가 운영되고 있다. 모든 페이지는 orgmode의 emacs document로 이루어져 있고, 주기적으로 git 
+server로부터 내용을 pull한 다음에, emacs의 batch script를 이용해서 html로 변환하게 된다.
+
+Worg가 원하는 기능의 많은 부분을 충족시키고 있지만(orgmode format, version control system을 통한 관리), 
+자동 index generation, customized page formatting등 몇가지 부족한 부분이 있다. 
+
+필요로 하는 기능은 아래와 같다.
+
+- Orgmode format 유지
+- Git나 다른 vcs를 통해서 서버에 submit
+- 자동으로 blog 형태로 html로 보여주는 interface
+- Source highligting
+- Category, Tag support
+- web 2.0의 feature를 필요에 따라 사용할 수 있을 것(rss, comment, trackback)
+
+관련 솔루션으로 [[http://orgmode.org/worg/blorgit.php][Blorgit]], [[http://github.com/mojombo/jekyll/tree/master][Jekyll]], Hyde, Worg, Blogofile등을 검토하다가, 최종적으로 Blogofile에 org-markup
+모듈을 추가하는 것으로 결론을 내렸다. 이 블로그는 blogofile을 통해서 orgmode로 작성된 text를 export하여
+만들어진다. 
+
+작성된 'orgmode mark up for posts' 기능은 원 저자에게 보내져서 0.5 버젼에 반영이 되었다. 
+
+** 참고로 읽어볼만한 글
+
+- http://zegoggl.es/2009/05/jekyll-vs-marley.html
+- http://metajack.im/2009/01/23/blogging-with-git-emacs-and-jekyll/
+- http://biodegradablegeek.com/2009/03/how-to-maintain-static-sites-with-git-jekyll/
+- http://matflores.com/2009/04/28/using-git-to-maintain-your-blog.html
+
+** TODO List
+
+- Syntax highlighting Color 
+- Speeed benchmark
+- Embedded Latex fragment 지원
+- Ditta, Gnuplot등 외부 모듈 검토 지원 
+- TODO 관리
+
