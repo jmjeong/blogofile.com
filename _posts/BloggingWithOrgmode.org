@@ -19,8 +19,8 @@ Ordmode의 [[http://orgmode.org/worg/][Worg]] 프로젝트를 보고 다시 고�
 homepage가 운영되고 있다. 모든 페이지는 orgmode의 emacs document로 이루어져 있고, 주기적으로 git 
 server로부터 내용을 pull한 다음에, emacs의 batch script를 이용해서 html로 변환하게 된다.
 
-Worg가 원하는 기능의 많은 부분을 충족시키고 있지만(orgmode format, version control system을 통한 관리), 
-자동 index generation, customized page formatting등 몇가지 부족한 부분이 있다. 
+Worg가 원하는 기능의 많은 부분을 충족시키고 있지만 orgmode format, version control system을 통한
+관리, 자동 index generation, customized page formatting등 부족한 부분이 있다.
 
 필요로 하는 기능은 아래와 같다.
 
@@ -31,8 +31,8 @@ Worg가 원하는 기능의 많은 부분을 충족시키고 있지만(orgmode f
 - Category, Tag support
 - web 2.0의 feature를 필요에 따라 사용할 수 있을 것(rss, comment, trackback)
 
-관련 솔루션으로 [[http://orgmode.org/worg/blorgit.php][Blorgit]], [[http://github.com/mojombo/jekyll/tree/master][Jekyll]], Hyde, Worg, Blogofile등을 검토하다가, 최종적으로 Blogofile에 org-markup
-모듈을 추가하는 것으로 결론을 내렸다. 이 블로그는 blogofile을 통해서 orgmode로 작성된 text를 export하여
+관련 솔루션으로 [[http://orgmode.org/worg/blorgit.php][Blorgit]], [[http://github.com/mojombo/jekyll/tree/master][Jekyll]], Hyde, [[http://orgmode.org/worg][Worg]], [[http://blogofile.com][Blogofile]]등을 검토하다가, 최종적으로 Blogofile에 org-markup
+모듈을 추가하는 것으로 결론을 내렸다. 이 블로그는 blogofile을 통해서 orgmode로 작성된 text를 변환하여
 만들어진다. 
 
 작성된 'orgmode mark up for posts' 기능은 원 저자에게 보내져서 0.5 버젼에 반영이 되었다. 
@@ -47,8 +47,7 @@ Worg가 원하는 기능의 많은 부분을 충족시키고 있지만(orgmode f
 ** TODO List
 
 - Syntax highlighting Color 
-- Speeed benchmark
+- Speed benchmark
 - Embedded Latex fragment 지원
 - Ditta, Gnuplot등 외부 모듈 검토 지원 
 - TODO 관리
-

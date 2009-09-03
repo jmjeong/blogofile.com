@@ -108,6 +108,7 @@ div#prose_block h2 {
     margin:50px 0 0;
     padding:0;
     text-decoration:none;
+	color:black;
 }
 div#prose_block h2.intrablog {
     color:#000000;
