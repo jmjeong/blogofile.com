@@ -27,4 +27,7 @@ origin repository로부터 staging branch를 삭제
 
 git push 할때 default 지정 
 
+** git log --walk-reflogs
+
+중간에 삭제된 branch나 unreachable한 commit에 대해서 log를 보고자 할때 사용
 
