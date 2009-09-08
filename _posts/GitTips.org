@@ -1,4 +1,4 @@
-* Git Tips														  :git:linux:
+* Git Tips<2009-09-08 Tue 15:42>														  :git:linux:
 
 ** Subversion repository를 git로 변환
 : authores file 
