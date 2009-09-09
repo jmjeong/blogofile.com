@@ -30,7 +30,7 @@ logger = logging.getLogger("blogofile.config")
 #  If you're hosting a blogofile powered site as a subdirectory of a larger
 #  non-blogofile site, then you would set the site_url to the full URL
 #  including that subdirectory: "http://www.yoursite.com/path/to/blogofile-dir"
-site_url         = "http://localhost:8080"
+site_url         = "http://localhost:8000"
 
 #### Blog Settings ####
 
@@ -48,7 +48,7 @@ blog_path = "/blog"
 
 ## blog_name -- Your Blog's name.
 # This is used repeatedly in default blog templates
-blog_name        = "Nemustech"
+blog_name        = "Jaemok"
 
 ## blog_description -- A short one line description of the blog
 # used in the RSS/Atom feeds.

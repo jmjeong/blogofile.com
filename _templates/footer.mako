@@ -1,5 +1,4 @@
-
-
+<div class="footer">
 <p id="credits">
 Powered by <a href="http://www.blogofile.com">Blogofile</a>.<br/>
 <br/>
@@ -31,3 +30,4 @@ try {
 var pageTracker = _gat._getTracker("UA-7729432-1");
 pageTracker._trackPageview();
 } catch(err) {}</script>
+</div> <!-- End Footer -->

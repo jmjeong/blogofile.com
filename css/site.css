@@ -1,255 +1,181 @@
-/********** Sane Defaults **********/
-img {
-    border: 0 none;
-}
-a {
-    color: #0B76AE;
-    text-decoration: none;
-}
-/********** Body **********/
-html {overflow-y: scroll;}
+/* General settings for the entire page */
 body {
-    /* background-color:#666666; */
-    color:#333333;
-    font-family: "Bitstream Vera Sans", "helvetica", "arial", sans-serif;
-    margin:0;
-    padding: 0px;
-}
-div#content {
-    width: 900px;
-    margin: 0 auto;
-    padding: 0px;
-    background: #ffffff;
+  margin: 0ex 1ex;
+  padding: 0px;
+  background-color: white;
+  font-family: "sans serif";
 }
 
-/********** Header **********/
-div#header {
-    background-color:#f7f7f7;
-    height:45px;
-    margin:0;
-    padding:0;
+/* The project logo in the upper left-hand corner of each page */
+div.logo {
+  display: table-cell;
+  text-align: center;
+  vertical-align: bottom;
+  font-weight: bold;
+  color: #558195;
 }
-div#header h1 {
-    background-color:transparent;
-    color:white;
-    font-family:monospace;
-    font-size:28px;
-    letter-spacing:0.1em;
-    padding:5px 0 5px 0;
-    text-decoration:none;
+
+/* The page title centered at the top of each page */
+div.title {
+  display: table-cell;
+  font-size: 2em;
+  font-weight: bold;
+  text-align: left;
+  color: #558195;
+  vertical-align: bottom;
+  width: 100%;
+  margin: 1em;
 }
-div#header a{
-    text-decoration: none;
+
+/* The login status message in the top right-hand corner */
+div.status {
+  display: table-cell;
+  text-align: right;
+  vertical-align: bottom;
+  color: #558195;
+  font-size: 0.8em;
+  font-weight: bold;
 }
-#blog_name {
-    color:black;
-    font-family: Arial,Helvetica,sans-serif;
-    font-size:28px;
-    letter-spacing:0.1em;
-    padding:10px 5px 10px 5px;
-    text-decoration:none;
+
+/* The header across the top of the page */
+div.header {
+  display: table;
+  width: 100%;
 }
-#blog_logo {
-    float:right;
-    margin:0;
-    padding:0;
-    position:relative;
-    right:100px;
-    top:0;
-    z-index:1;
+
+/* The main menu bar that appears at the top of the page beneath
+** the header */
+div.mainmenu {
+  padding: 5px 10px 5px 10px;
+  font-size: 0.9em;
+  font-weight: bold;
+  text-align: left;
+  letter-spacing: 1px;
+  background-color: #558195;
+  color: white;
 }
-/********** Top Bar **********/
-#top_bar ul, ol {
-    margin:0;
-    padding:10px;
-}
-#top_bar li {
-    display:inline;
-    list-style-type:none;
-    background:#f0f0f0 none repeat scroll 0 0;
-    color:#1E4C62;
-    font-weight:bold;
-    margin:0 3px 0 0;
-    padding:6px 10px;
-    text-decoration: none;
-    cursor: pointer;
-}
-#top_bar {
-    background:#303030 none repeat scroll 0 0;
-    font-size:12px;
-    margin:0;
-    padding:8px 0 4px 0;
-}
+
 #search {
     float:right;
     margin:0;
     padding:0;
     position:relative;
     right:10px;
-    top:-22px;
-}
-#search input {
-    border:1px solid #66A8CC;
-    font-size:12px;
-    padding:2px;
-    width:160px;
+    /* top:-22px; */
 }
 
-/********** Main Block **********/
-div#prose_block {
-    float: left;
-    margin:0;
-    padding:0 0 20px 20px;
-    width:580px;
+/* The submenu bar that *sometimes* appears below the main menu */
+div.submenu {
+  padding: 3px 10px 3px 0px;
+  font-size: 0.9em;
+  text-align: center;
+  background-color: #456878;
+  color: white;
 }
-div#prose_block h2 {
-    font-size:18px;
-    font-weight:normal;
-    margin:50px 0 0;
-    padding:0;
-    text-decoration:none;
-	color:black;
+div.mainmenu a, div.mainmenu a:visited, div.submenu a, div.submenu a:visited {
+  padding: 3px 10px 3px 10px;
+  color: white;
+  text-decoration: none;
 }
-div#prose_block h2.intrablog {
-    color:#000000;
-    margin-bottom: 20px;
-}
-span.post_prose {
-    font-size:13px;
-    line-height:1.6em;
-}
-.blog_post small {
-    font-family:Arial,Helvetica,Sans-Serif;
-    font-size:11px;
-}
-div.blog_post {
-    margin: 0;
-    padding: 0;
-}
-.post_prose pre {
-    background:#F1F1FF none repeat scroll 0 0; 
-    border:1px solid #BBBBBB;
-    color:#000000;
-    font-size:0.85em;
-    overflow:auto;
-    padding:5px;
-    clear:none;
-    float:none;
-    line-height:1.333;
-    margin:0;
-    overflow:visible;
-    width:auto;
-    margin-top: 15px;
-    margin-bottom: 15px;
-    margin-left: 5px;
+div.mainmenu a:hover, div.submenu a:hover {
+  color: #558195;
+  background-color: white;
 }
 
-h2.blog_post_title a:hover {
-    background:transparent none repeat scroll 0 0;
-    /* color:#6EB9E0; */
-}
-h2.blog_post_title a {
-    color:#0090DA;
-    font-size:18px;
-    font-weight:normal;
-    margin:50px 0 0;
-    padding:0;
-    text-decoration:none;
-}
-div.blog_post small a:hover {
-    background:#0090DA none repeat scroll 0 0;
-    color:#FFFFFF;
-}
-.post_prose a:hover {
-    background:#0090DA none repeat scroll 0 0;
-    color:#FFFFFF;
-}
-.post_prose a {
-    color:#0B76AE;
-    text-decoration:none;
-}
-div.after_post {
-    margin-top: 50px;
-    text-align: center;
-    font-size: 75%;
-}
-div.after_post a:hover {
-    background:#0090DA none repeat scroll 0 0;
-    color:#FFFFFF;
-}
-hr.interblog {
-    background-color: #eeeeee;
-    border:0 none;
-    color:#555555;
-    height:1px;
-    width:90%;
+/* All page content from the bottom of the menu or submenu down to
+** the footer */
+div.content {
+  padding: 0ex 1ex 0ex 2ex;
 }
 
-/********** Sidebar **********/
-div#right_sidebar {
-    float: right;
-    width:220px;
-    font-size: 11px;
-    line-height: 1.5em;
-    margin: 0;
-    padding: 0 10px;
-    border-left: 1px solid #eeeeee;
-}
-#right_sidebar div {
-    margin: 20px 0;
-    padding: 0;
-}
-#right_sidebar h3 {
-    background:transparent url(/site_img/dot.gif) repeat-x scroll center bottom;
-    color:#174B65;
-    font-size:11px;
-    font-weight:normal;
-    letter-spacing:0.2em;
-    margin:0;
-    padding:0;
-    text-transform:uppercase;
-}
-#right_sidebar h3 small {
-    text-transform:none;
-    letter-spacing:0.0em;
-}
-#right_sidebar a {
-    color:#0B76AE;
-    text-decoration: none;
-}
-#right_sidebar a:hover {
-    background:transparent url(/site_img/dot.gif) repeat-x scroll center bottom;
-    color:#0B76AE;
-}
-#right_sidebar ul, #right_sidebar ol {
-    list-style-image:none;
-    list-style-position:outside;
-    list-style-type:none;
-    margin:0;
-    padding:5px;
-}
-ul#twitter_update_list li {
-    margin-bottom:1em;
+div.postheader {
+
 }
 
-/********** Footer **********/
-div#footer {
-    clear: both;
+postheader.posttitle {
+	color: #ce5c00;
+	font-size: 1.75em;
+	font-weight: normal;
+	margin-bottom: 0px;
 }
-#credits {
-    color:white;
-    background:#303030 none repeat scroll 0 0;
-    font-family:Small Fonts,VT100,Arial,Helvetica;
-    font-size:9px;
-    margin:0;
-    padding:5px 20px;
-    text-align:center;
-    text-transform:uppercase;
+
+div.posttitle a {
+  color: #ce5c00;
+  font-size: 1.25em;
+  font-weight: normal;
+  text-decoration: none;
 }
-#credits a {
-    color:#00AAFF;
+
+div.postheader postext {
+	color: #ce5c00;
+	font-size: 0.5em;
+	font-weight: normal;
+	margin-bottom: 0px;
+	float: right;
 }
-#credits a:hover {
-    background:transparent none repeat scroll 0 0;
-    color:#00CCFF;
+
+/* Some pages have section dividers */
+div.section {
+  margin-bottom: 0px;
+  margin-top: 1em;
+  padding: 1px 1px 1px 1px;
+  font-size: 1.2em;
+  font-weight: bold;
+  background-color: #558195;
+  color: white;
+}
+
+/* The "Date" that occurs on the left hand side of timelines */
+div.divider {
+  background: #a1c4d4;
+  border: 2px #558195 solid;
+  font-size: 1em; font-weight: normal;
+  padding: .25em;
+  margin: .2em 0 .2em 0;
+  float: left;
+  clear: left;
+}
+
+/* The footer at the very bottom of the page */
+div.footer {
+  font-size: 0.8em;
+  margin-top: 12px;
+  padding: 5px 10px 5px 10px;
+  text-align: right;
+  background-color: #558195;
+  color: white;
+}
+
+/* Make the links in the footer less ugly... */
+div.footer a { color: white; }
+div.footer a:link { color: white; }
+div.footer a:visited { color: white; }
+div.footer a:hover { background-color: white; color: #558195; }
+
+/* <verbatim> blocks */
+pre.verbatim {
+   background-color: #f5f5f5;
+   padding: 0.5em;
+}
+
+/* The label/value pairs on (for example) the ci page */
+table.label-value th {
+  vertical-align: top;
+  text-align: right;
+  padding: 0.2ex 2ex;
+}
+
+/* For marking important UI elements which shouldn't be
+   lightly dismissed. I mainly use it to mark "not yet
+   implemented" parts of a page. Whether or not to have
+   a 'border' attribute set is arguable. */
+.achtung {
+  color: #ff0000;
+  background: #ffff00;
+  border: 1px solid #ff0000;
+}
+
+div.miniform {
+    font-size: smaller;
+    margin: 8px;
 }
