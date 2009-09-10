@@ -2,21 +2,19 @@
 <div id="header" onclick="location.href='/';" style="cursor: pointer;">
   <div id="plugbanner"></div>
   <div id="blog_logo"></div>
-  <h1><a href="/">
+  <a href="/">
       <span id="blog_name">
         ${config.blog_name}
       </span>
-    </a>
-  </h1>
+  </a>
 </div>
+
 <div id="top_bar">
   <div class="ButtonBar">
-    <ul>
-      <li><a href="/">Home</a></li>
-      <li><a href="http://jmjeong.com/old">Previous Homepage</a></li>
-      <li><a href="http://wiki.jmjeong.com">Palm Wiki</a></li>
-      <li><a href="${config.util.blog_path_helper('')}">Blog List</a></li>
-    </ul>
+      <a href="/">Home</a>
+      <a href="${config.util.blog_path_helper('')}all/">All</a>
+      <a href="http://jmjeong.com/old">Old</a>
+      <a href="http://wiki.jmjeong.com">Palm Wiki</a>
   </div>
   <div id="search">    
     <form id="searchform" method="get" action="http://www.google.com/search">

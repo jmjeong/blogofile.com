@@ -9,45 +9,42 @@ a {
 /********** Body **********/
 html {overflow-y: scroll;}
 body {
-    /* background-color:#666666; */
-    color:#333333;
-    font-family: "Bitstream Vera Sans", "helvetica", "arial", sans-serif;
-    margin:0;
+    background-color: white;
+    font-family: "sans serif";
+    margin:0ex 1ex;
     padding: 0px;
 }
 div#content {
-    width: 900px;
+    width: 980px;
     margin: 0 auto;
     padding: 0px;
-    background: #ffffff;
+    background: white;
 }
 
 /********** Header **********/
 div#header {
-    background-color:#f7f7f7;
-    height:45px;
+    background-color:white;
+    /* height:45px; */
+	color: white;
+	letter-spacing: 1px;
+	font-size: 0.9em;
+	font-weight: bold;
     margin:0;
     padding:0;
-}
-div#header h1 {
-    background-color:transparent;
-    color:white;
-    font-family:monospace;
-    font-size:28px;
-    letter-spacing:0.1em;
-    padding:5px 0 5px 0;
-    text-decoration:none;
 }
 div#header a{
     text-decoration: none;
 }
 #blog_name {
     color:black;
-    font-family: Arial,Helvetica,sans-serif;
-    font-size:28px;
+    /* font-family: Arial,Helvetica,sans-serif; */
+    font-size: 2em;
     letter-spacing:0.1em;
     padding:10px 5px 10px 5px;
     text-decoration:none;
+	font-weight: bold;
+	vertical-align: bottom;
+	margin: 1em;
 }
 #blog_logo {
     float:right;
@@ -59,26 +56,24 @@ div#header a{
     z-index:1;
 }
 /********** Top Bar **********/
-#top_bar ul, ol {
-    margin:0;
-    padding:10px;
+#top_bar a, #top_bar a:visited {
+  padding: 3px 10px 3px 10px;
+  color: white;
+  text-decoration: none;
 }
-#top_bar li {
-    display:inline;
-    list-style-type:none;
-    background:#f0f0f0 none repeat scroll 0 0;
-    color:#1E4C62;
-    font-weight:bold;
-    margin:0 3px 0 0;
-    padding:6px 10px;
-    text-decoration: none;
-    cursor: pointer;
+#top_bar a:hover, #top_bar a:hover {
+  color: #558195;
+  background-color: white;
 }
+
 #top_bar {
-    background:#303030 none repeat scroll 0 0;
-    font-size:12px;
-    margin:0;
-    padding:8px 0 4px 0;
+	padding: 5px 10px 5px 10px;
+	font-size: 0.9em;
+	font-weight: bold;
+	text-align: left;
+	letter-spacing: 1px;
+	background-color: #558195;
+	color: white;
 }
 #search {
     float:right;
@@ -90,7 +85,6 @@ div#header a{
 }
 #search input {
     border:1px solid #66A8CC;
-    font-size:12px;
     padding:2px;
     width:160px;
 }
@@ -99,13 +93,13 @@ div#header a{
 div#prose_block {
     float: left;
     margin:0;
-    padding:0 0 20px 20px;
-    width:580px;
+    padding:0 0 10px 10px;
+    width: 660px; 
 }
 div#prose_block h2 {
-    font-size:18px;
+    font-size:1.2em;
     font-weight:normal;
-    margin:50px 0 0;
+    margin:20px 0 0;
     padding:0;
     text-decoration:none;
 	color:black;
@@ -115,12 +109,12 @@ div#prose_block h2.intrablog {
     margin-bottom: 20px;
 }
 span.post_prose {
-    font-size:13px;
+    font-size:1.0em;
     line-height:1.6em;
 }
 .blog_post small {
-    font-family:Arial,Helvetica,Sans-Serif;
-    font-size:11px;
+    /* font-family:Arial,Helvetica,Sans-Serif; */
+    font-size:0.8em;
 }
 div.blog_post {
     margin: 0;
@@ -150,9 +144,9 @@ h2.blog_post_title a:hover {
 }
 h2.blog_post_title a {
     color:#0090DA;
-    font-size:18px;
+    font-size:1.2em;
     font-weight:normal;
-    margin:50px 0 0;
+    margin:20px 0 0;
     padding:0;
     text-decoration:none;
 }
@@ -169,7 +163,7 @@ div.blog_post small a:hover {
     text-decoration:none;
 }
 div.after_post {
-    margin-top: 50px;
+    margin-top: 20px;
     text-align: center;
     font-size: 75%;
 }
@@ -189,7 +183,7 @@ hr.interblog {
 div#right_sidebar {
     float: right;
     width:220px;
-    font-size: 11px;
+    font-size: 0.9em;
     line-height: 1.5em;
     margin: 0;
     padding: 0 10px;
@@ -202,7 +196,7 @@ div#right_sidebar {
 #right_sidebar h3 {
     background:transparent url(/site_img/dot.gif) repeat-x scroll center bottom;
     color:#174B65;
-    font-size:11px;
+    font-size:0.9em;
     font-weight:normal;
     letter-spacing:0.2em;
     margin:0;
@@ -238,9 +232,9 @@ div#footer {
 }
 #credits {
     color:white;
-    background:#303030 none repeat scroll 0 0;
-    font-family:Small Fonts,VT100,Arial,Helvetica;
-    font-size:9px;
+    background:#558195 none repeat scroll 0 0;
+    /* font-family:Small Fonts,VT100,Arial,Helvetica; */
+    font-size:0.75em;
     margin:0;
     padding:5px 20px;
     text-align:center;

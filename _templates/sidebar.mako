@@ -7,14 +7,6 @@
 	  <li><a href="http://twitter.com/jmjeong">Twitter</a></li>
     </ul>
   </div>
-  <div id="blog_post_list">
-  <h3>Latest blog posts</h3>
-  <ul>
-% for post in posts[:5]:
-    <li><a href="${post.path}">${post.title}</a></li>
-% endfor
-  </ul>
-  </div>
   <div id="on_twitter">
     <h3>On Twitteres</h3>
     <div id="blogofile_tweets"></div>
