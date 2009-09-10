@@ -21,13 +21,10 @@ RSS feeds for <a href="${config.util.blog_path_helper('feed')}">Entries</a> and 
 //]]>
 </script>
 
-<script type="text/javascript">
-var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
-document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
+<script src="http://www.google-analytics.com/urchin.js" type="text/javascript">
 </script>
 <script type="text/javascript">
-try {
-var pageTracker = _gat._getTracker("UA-7729432-1");
-pageTracker._trackPageview();
-} catch(err) {}</script>
+_uacct = "UA-998709-1";
+urchinTracker();
+</script>
 </div> <!-- End Footer -->

@@ -2,7 +2,7 @@
 <ul>
 % for post in posts:
   <li><a href="${post.permapath()}" rel="bookmark" title="Permanent Link to ${post.title}">${post.title}</a>  
-  <small>${post.date.strftime("%B %d, %Y at %I:%M %p")} | 
+  <small>${post.date.strftime("%m/%d/%Y")} | 
 <% 
    category_links = []
    for category in post.categories:

@@ -30,3 +30,5 @@ License issue로 한참 이야기 중이던데, 최근 받아본 python-mode.el�
 (require 'ipython)
 #+END_SRC
 
+- 5.1.0 버젼의 python-mode.el에는 triple quote(""")에 대한 font-lock에 문제가 있다. 메일링리스트에서
+  패치를 찾아서 [[http://github.com/jmjeong/my-dot-emacs/blob/130e8d593cc49ca5e5d62d5b4fdb4c79c24aea90/python-mode.el][적용]]하여 해결했다. (<2009-09-10 Thu>)

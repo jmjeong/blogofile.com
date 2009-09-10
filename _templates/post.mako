@@ -1,8 +1,10 @@
 <%page args="post"/>
-<div class="content">
-  <a name="${post.title}" />
-  <h2 class="blog_post_title"><a href="${post.permapath()}" rel="bookmark" title="Permanent Link to ${post.title}">${post.title}</a></h2>
-  <small>${post.date.strftime("%B %d, %Y at %I:%M %p")} | categories: 
+<div class="postheader">
+<span class="posttitle">
+<a name="${post.title}" />
+<a href="${post.permapath()}" rel="bookmark" title="Permanent Link to ${post.title}">${post.title}</a>
+</span>
+<span class="postext">
 <% 
    category_links = []
    for category in post.categories:
@@ -12,13 +14,9 @@
        else:
            category_links.append("<a href='%s'>%s</a>" % (category.path, category.name))
 %>
-${", ".join(category_links)} | <a href="${post.permalink}#disqus_thread">View Comments</a>
-</small><p/>
-  <span class="post_prose">
-    ${self.post_prose(post)}
-  </span>
+${", ".join(category_links)} | ${post.date.strftime("%m/%d/%Y")}
+</span>
 </div>
-
-<%def name="post_prose(post)">
+<span class="post_prose">
   ${post.content}
-</%def>
+</span>

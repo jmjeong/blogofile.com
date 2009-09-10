@@ -6,14 +6,12 @@
 ${self.head()}
 </head>
 <body>
-<div class="main">
 ${self.header()}
 <div class="content">
 ${self.body()}
 </div>
 ${self.sidebar()}
 ${self.footer()}
-</div>
 </body>
 </html>
 
@@ -23,8 +21,8 @@ ${self.footer()}
 <%def name="header()">
 Your custom header
 </%def>
+<%def name="sidebar()">
+</%def>
 <%def name="footer()">
 Your custom footer
-</%def>
-<%def name="sidebar()">
 </%def>

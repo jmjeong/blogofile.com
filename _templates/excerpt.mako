@@ -6,8 +6,6 @@
 <a href="${post.permapath()}" rel="bookmark" title="Permanent Link to ${post.title}">${post.title}</a>
 </span>
 <span class="postext">
-${post.date.strftime("%b, %d")} | 
-categories: 
 <% 
    category_links = []
    for category in post.categories:
@@ -17,7 +15,7 @@ categories:
        else:
            category_links.append("<a href='%s'>%s</a>" % (category.path, category.name))
 %>
-${", ".join(category_links)} | <a href="${post.permalink}#disqus_thread">View Comments</a>
+${", ".join(category_links)} | ${post.date.strftime("%m/%d/%Y")} 
 </span>
 </div>
 <span class="post_prose">
