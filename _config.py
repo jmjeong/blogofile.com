@@ -56,14 +56,6 @@ blog_description = u"정재목"
 
 ## blog_timezone -- the timezone that you normally write your blog posts from
 blog_timezone    = "ROK"
-#Blog posts per page
-blog_posts_per_page = 5
-#If permalink is not defined in post article, this value is used
-# :year, :month, :day -> post's date
-# :title              -> post's title
-# :uuid               -> sha hash based on title
-# :filename           -> article's filename without suffix
-permalink        = "/blog/:filename"
 
 ## blog_posts_per_page -- Blog posts per page
 blog_posts_per_page = 5
