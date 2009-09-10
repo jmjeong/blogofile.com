@@ -6,9 +6,11 @@
 ${self.head()}
 </head>
 <body>
+<div class="main">
 ${self.header()}
 <div class="content">
 ${self.body()}
+</div>
 ${self.sidebar()}
 ${self.footer()}
 </div>

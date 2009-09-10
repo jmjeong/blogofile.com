@@ -1,11 +1,11 @@
 <%page args="post"/>
 
 <div class="postheader">
-<div class="posttitle">
+<span class="posttitle">
 <a name="${post.title}" />
 <a href="${post.permapath()}" rel="bookmark" title="Permanent Link to ${post.title}">${post.title}</a>
-</div>
-<div class="postext">
+</span>
+<span class="postext">
 ${post.date.strftime("%b, %d")} | 
 categories: 
 <% 
@@ -18,7 +18,7 @@ categories:
            category_links.append("<a href='%s'>%s</a>" % (category.path, category.name))
 %>
 ${", ".join(category_links)} | <a href="${post.permalink}#disqus_thread">View Comments</a>
-</div>
+</span>
 </div>
 <span class="post_prose">
   ${post.excerpt}

@@ -24,7 +24,7 @@ div.title {
   color: #558195;
   vertical-align: bottom;
   width: 100%;
-  margin: 1em;
+  margin: 3em;
 }
 
 /* The login status message in the top right-hand corner */
@@ -84,34 +84,41 @@ div.mainmenu a:hover, div.submenu a:hover {
 
 /* All page content from the bottom of the menu or submenu down to
 ** the footer */
+
+div.main {
+float: left;
+}
+
 div.content {
   padding: 0ex 1ex 0ex 2ex;
 }
 
+/* postheader.posttitle { */
+/* 	color: #ce5c00; */
+/* 	font-size: 1.75em; */
+/* 	font-weight: normal; */
+/* 	margin-bottom: 0px; */
+/* } */
+
 div.postheader {
-
+	margin-bottom: 0em;
+	border-bottom: 1px solid gray;
 }
 
-postheader.posttitle {
-	color: #ce5c00;
-	font-size: 1.75em;
-	font-weight: normal;
-	margin-bottom: 0px;
-}
-
-div.posttitle a {
+.posttitle a {
   color: #ce5c00;
   font-size: 1.25em;
   font-weight: normal;
   text-decoration: none;
+  align: left;
 }
 
-div.postheader postext {
-	color: #ce5c00;
-	font-size: 0.5em;
-	font-weight: normal;
-	margin-bottom: 0px;
-	float: right;
+.postext {
+ color: #ce5c00;
+ font-size: 0.75em;
+ font-weight: normal;
+ margin-bottom: 0px;
+ margin-left: 3ex;
 }
 
 /* Some pages have section dividers */
@@ -146,6 +153,54 @@ div.footer {
   color: white;
 }
 
+/********** Sidebar **********/
+div#right_sidebar {
+    float: right;
+    width:220px;
+    font-size: 11px;
+    line-height: 1.5em;
+    margin: 0;
+    padding: 0 10px;
+    border-left: 1px solid #eeeeee;
+}
+#right_sidebar div {
+    margin: 20px 0;
+    padding: 0;
+}
+#right_sidebar h3 {
+    background:transparent url(/site_img/dot.gif) repeat-x scroll center bottom;
+    color:#174B65;
+    font-size:11px;
+    font-weight:normal;
+    letter-spacing:0.2em;
+    margin:0;
+    padding:0;
+    text-transform:uppercase;
+}
+#right_sidebar h3 small {
+    text-transform:none;
+    letter-spacing:0.0em;
+}
+#right_sidebar a {
+    color:#0B76AE;
+    text-decoration: none;
+}
+#right_sidebar a:hover {
+    background:transparent url(/site_img/dot.gif) repeat-x scroll center bottom;
+    color:#0B76AE;
+}
+#right_sidebar ul, #right_sidebar ol {
+    list-style-image:none;
+    list-style-position:outside;
+    list-style-type:none;
+    margin:0;
+    padding:5px;
+}
+ul#twitter_update_list li {
+    margin-bottom:1em;
+}
+
+/********** Footer **********/
 /* Make the links in the footer less ugly... */
 div.footer a { color: white; }
 div.footer a:link { color: white; }
