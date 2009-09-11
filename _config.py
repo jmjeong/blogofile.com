@@ -19,7 +19,7 @@
 #  If you're hosting a blogofile powered site as a subdirectory of a larger
 #  non-blogofile site, then you would set the site_url to the full URL
 #  including that subdirectory: "http://www.yoursite.com/path/to/blogofile-dir"
-site_url         = "http://localhost:8000"
+site_url         = "http://jmjeong.com"
 
 #### Blog Settings ####
 
@@ -71,7 +71,7 @@ disqus_name    = "jmjeong"
 #### Emacs Integration ####
 emacs_orgmode_enabled = True
 # emacs binary (orgmode must be installed)
-emacs_binary    = "/Applications/Emacs.app/Contents/MacOS/Emacs"               # emacs 22 or 23 is recommended
+emacs_binary    = "/usr/bin/emacs"               # emacs 22 or 23 is recommended
 emacs_preload_elisp = "_emacs/setup.el"          # preloaded elisp file
 emacs_orgmode_preamble = r"#+OPTIONS: H:3 num:nil toc:nil \n:nil"   # added in preamble
 
