@@ -14,3 +14,8 @@ Org 모드에서는 fixed with font인 NanumGodicCoding을 사용하는데, mail
 
 - http://groups.google.co.kr/group/gnu.emacs.help/browse_thread/thread/8c8145102dadc34c
 - http://stackoverflow.com/questions/534307/set-emacs-defaut-font-face-per-buffer-mode
+
+** Dired에서 path 이름 복사
+
+- w : dired-copy-filename-as-kill
+- C-u 0 w : path 이름까지 복사

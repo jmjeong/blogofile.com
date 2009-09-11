@@ -1,3 +1,0 @@
-* CSS<2009-09-09 Wed 14:29>										   :css:html:
-
-CSS는 /Cascasding Style Sheets/ 의 약자이다. 
