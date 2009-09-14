@@ -1,0 +1,14 @@
+---
+title: title
+date: 2009-09-11 18:52:39
+updated: 2009-09-14 16:07:12
+categories: categories
+---
+* Mac Tips<2009-09-10 Thu 21:57>																:mac:
+
+- 현재 보이는 창 scrap하는 방법 : Command-Shift-4. Space, Left click
+
+
+
+
+
