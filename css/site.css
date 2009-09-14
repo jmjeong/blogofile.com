@@ -231,14 +231,14 @@ div#footer {
     clear: both;
 }
 #credits {
-    color:white;
-    background:#558195 none repeat scroll 0 0;
-    /* font-family:Small Fonts,VT100,Arial,Helvetica; */
-    font-size:0.75em;
-    margin:0;
-    padding:5px 20px;
-    text-align:center;
-    text-transform:uppercase;
+  color:white;
+  background:#558195 none repeat scroll 0 0;
+  /* font-family:Small Fonts,VT100,Arial,Helvetica; */
+  font-size:0.75em;
+  margin:0;
+  padding:5px 20px;
+  text-align:center;
+  text-transform:uppercase;
 }
 #credits a {
     color:#00AAFF;

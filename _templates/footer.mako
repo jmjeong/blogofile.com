@@ -1,10 +1,6 @@
-
-
 <p id="credits">
-Powered by <a href="http://www.blogofile.com">Blogofile</a>.<br/>
-<br/>
+Powered by <a href="http://www.blogofile.com">Blogofile</a>.
 RSS feeds for <a href="${config.util.blog_path_helper('feed')}">Entries</a> and <a href="http://${config.disqus_name}.disqus.com/latest.rss">Comments</a>.
-<br>
 </p>
 
 <script type="text/javascript">
