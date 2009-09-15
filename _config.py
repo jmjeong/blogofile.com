@@ -71,7 +71,7 @@ disqus_name    = "jmjeong"
 #### Emacs Integration ####
 emacs_orgmode_enabled = True
 # emacs binary (orgmode must be installed)
-emacs_binary    = "/usr/bin/emacs"               # emacs 22 or 23 is recommended
+emacs_binary    = "/Applications/Emacs.app/Contents/MacOS/Emacs"               # emacs 22 or 23 is recommended
 emacs_preload_elisp = "_emacs/setup.el"          # preloaded elisp file
 emacs_orgmode_preamble = r"#+OPTIONS: H:3 num:nil toc:nil \n:nil"   # added in preamble
 
@@ -144,3 +144,17 @@ def pre_build():
 def post_build():
     #Do whatever you want after the _site is built
     pass
+
+def post_excerpt(content, num_words=50):
+    #Default post excerpting function
+    #Can be overridden in _config.py by
+    #defining post_excerpt(content,num_words)
+    """Retrieve excerpt from article"""
+
+    import BeautifulSoup
+
+    s = BeautifulSoup.BeautifulSoup(content)
+
+    excerpt = ''.join([str(e).decode('utf-8') for e in s.findAll('p', limit=2)])
+    excerpt += "<p><i>Read more...</i></p>"
+    return excerpt
