@@ -156,5 +156,5 @@ def post_excerpt(content, num_words=50):
     s = BeautifulSoup.BeautifulSoup(content)
 
     excerpt = ''.join([str(e).decode('utf-8') for e in s.findAll('p', limit=2)])
-    excerpt += "<p><i>Read more...</i></p>"
+    excerpt += "<i>Read more...</i>"
     return excerpt
