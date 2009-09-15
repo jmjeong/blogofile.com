@@ -1,6 +1,6 @@
 (add-to-list 'load-path "_emacs/")
 
-(require 'htmlize)
+;(require 'htmlize)
 (require 'org)
 
 (prefer-coding-system 'utf-8)

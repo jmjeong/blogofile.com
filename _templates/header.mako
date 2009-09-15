@@ -13,8 +13,8 @@
   <div class="ButtonBar">
       <a href="/">Home</a>
       <a href="${config.util.blog_path_helper('')}all/">All</a>
-      <a href="http://jmjeong.com/old">Old</a>
-      <a href="http://wiki.jmjeong.com">Palm Wiki</a>
+      <a href="http://jmjeong.com/index.php">Old</a>
+      <a href="http://wiki.jmjeong.com">PalmWiki</a>
   </div>
   <div id="search">    
     <form id="searchform" method="get" action="http://www.google.com/search">

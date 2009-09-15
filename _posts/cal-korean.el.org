@@ -10,7 +10,7 @@ Timezone 때문에 1시간의 차이가 난다. cal-china.el 파일을 기반으
 
 기본적인 사용은 .emacs 파일에 아래와 같은 내용을 추가한다. 
 
-#+BEGIN_SRC elisp
+#+BEGIN_SRC emacs-lisp
 ;; calendar korean lunar
 (if (= emacs-major-version 23)
 	(require 'cal-korean)

@@ -8,7 +8,7 @@ License issue로 한참 이야기 중이던데, 최근 받아본 python-mode.el�
 결론적으로는 python-mode.el과 ipython을 사용하기로 했다. 아직 todo로 pdb와 ropemacs 세팅이 남아
 있는데 당분간은 이대로 써야겠다.
 
-#+BEGIN_SRC elisp
+#+BEGIN_SRC emacs-lisp
 ;; python mode
 (load "python-mode" nil t)
 (autoload 'python-mode "python-mode" "Python editing mode." t)
