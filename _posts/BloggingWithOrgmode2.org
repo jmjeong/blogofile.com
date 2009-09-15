@@ -1,0 +1,62 @@
+* Orgmode를 이용한 Blogging (2)<2009-09-15 Tue 16:51> 								 :emacs:blog:
+
+** [[/blog/bloggingwithorgmode][Orgmode를 이용한 Blogging]]에 이어서...
+
+홈페이지 서버를 교체하면서 blogofile+orgmode extension Blogging을 2주 정도 사용 중이다. 
+느낀 점을 간단히 정리하자면...
+
+- 기대했던 것처럼, html browser 대신에 emacs을 사용할 수 있고, 익숙한 orgmode에서 사용할 수 있다는
+  측면에서 매우 편하다
+- CSS skin은 아직도 맘에 안든다. 특히 IE, Safari, Firefox등 다양한 browser 호환성 맞추기가 
+  쉽지 않다
+
+*** 불편한 점
+
+Blogofile + orgmode extension 자체 solution은 현재로서는 쓸만한데, 글이 좀 많아지는 경우에는
+  몇가지 문제가 생길 수 있다 
+
+- Orgmode article -> html 변환 : emacs + orgmode 버젼이 다른 경우 다른 formatting이 되는 경우가 있다
+- Orgmode article -> html 변환 속도 : 매번 변환 할 때마다 emacs launch하여 batch로 처리가 되다보니
+  글이 많아지면 속도가 문제가 된다. 처음 검토했을때 각 글당 1초 미만으로 걸리고, 서버측에서
+  자동으로 처리가 되는 부분이니 무시해도 되지 않을까 생각했던 부분이다
+- Syntax highlight 처리 : orgmode에서는 자동으로 처리가 되었는데 batch로 처리를 하니 색 지정이
+  되지 않고 face 처리가 된다 
+- [[http://orgmode.org/worg/org-contrib/babel/org-babel.php][Org babel]] : latex fragment, ditaa 등을 고려하면 최종적으로 검토를 해야 하는데, 이 부분을
+  서버측에서 처리를 하다보면 속도나 호환성 쪽에서 문제가 되지 않을까 하는 우려가 있다
+- 문서의 update time : Blog article의 lifetime과는 달리 기존의 wiki처럼 문서를 만들어 놓고 계속
+  수정 또는 첨가 형태로 운영을 하게 되는데, 각 article들의 update time과 페이지 상의 위치는 어떻게
+  유지할까?
+  - yasnippet와 emacs write hook을 사용하는 대안 :
+	yasnippet용 script로 [[http://github.com/jmjeong/my-dot-emacs/blob/master/snippets/org-mode/yaml][yaml]]을 정의하고, yaml이 blogofile용 header를 입력하게 하고, org mode에서
+	파일이 저장될 때 /updated:/ 항목을 갱신하는 방법으로 update를 변경하는 방법 : 페이지 자체에
+	불필요한 정보가 들어있다 보니 orgmode exporter가 처리가 안 되는 문제가 있다. 
+#+BEGIN_SRC emacs-lisp
+  (add-hook 'org-mode-hook
+            (lambda ()
+              (org-set-local 'yas/trigger-key  [tab])
+              (define-key yas/keymap [tab] 'yas/next-field-group)
+              (auto-fill-mode)
+              (add-hook 'local-write-file-hooks 'blog-updated-timestamp)
+              ))
+  
+  (defun blog-updated-timestamp ()
+    "Upate blog-updated-timestamp"
+    (save-excursion
+      (goto-char (point-min))
+      (let ((state buffer-read-only))
+        (when state (setq buffer-read-only nil))
+        (if (search-forward-regexp "^updated:" nil t)
+            (let ((beg (match-end 0)))
+              (end-of-line)
+              (delete-region beg (point))
+              (goto-char (match-end 0))
+              (kill-line)
+              (insert (format-time-string " %Y/%02m/%02d %02H:%02M:%02S\n" (current-time)))
+              )
+          )
+        (when state (setq buffer-read-only t)))))
+#+END_SRC
+
+** 개선점
+
+/To be continued.../
