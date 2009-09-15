@@ -1,6 +1,6 @@
 * cal-korean.el<2009-09-10 Thu 21:25>														  :emacs:
 
-- 파일 download link : [[http://github.com/jmjeong/my-dot-emacs/blob/130e8d593cc49ca5e5d62d5b4fdb4c79c24aea90/cal-korean.el][cal-korean.el Emacs 23용]], [[http://jmjeong.com/index.php%3Fdisplay%3DEmacs/Cal-Korea][cal-korean.el Emacs 22용]]
+- 파일 download link : [[http://github.com/jmjeong/my-dot-emacs/blob/130e8d593cc49ca5e5d62d5b4fdb4c79c24aea90/cal-korean.el][Emacs 23용]], [[http://jmjeong.com/index.php%3Fdisplay%3DEmacs/Cal-Korea][Emacs 22용]]
 
 Emacs의 calendar에 대한민국 음력을 표시해 주는 elisp 파일이다. 
 

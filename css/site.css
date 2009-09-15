@@ -38,7 +38,7 @@ div#header a{
 #blog_name {
     color:black;
     /* font-family: Arial,Helvetica,sans-serif; */
-    font-size: 2em;
+    font-size: 1.4em;
     letter-spacing:0.1em;
     padding:10px 5px 10px 5px;
     text-decoration:none;
@@ -109,12 +109,12 @@ div#prose_block h2.intrablog {
     margin-bottom: 20px;
 }
 span.post_prose {
-    font-size:1.0em;
-    line-height:1.6em;
+    font-size:0.9em;
+    line-height:1.4em;
 }
 .blog_post small {
     /* font-family:Arial,Helvetica,Sans-Serif; */
-    font-size:0.8em;
+    font-size:0.75em;
 }
 div.blog_post {
     margin: 0;
@@ -124,12 +124,12 @@ div.blog_post {
     background:#F1F1FF none repeat scroll 0 0; 
     border:1px solid #BBBBBB;
     color:#000000;
-    font-size:0.85em;
+    font-size:0.8em;
     overflow:auto;
     padding:5px;
     clear:none;
     float:none;
-    line-height:1.333;
+    line-height:1.2em;
     margin:0;
     overflow:visible;
     width:auto;
