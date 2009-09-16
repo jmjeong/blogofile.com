@@ -13,7 +13,7 @@
 *** 불편한 점
 
 Blogofile + orgmode extension 자체 solution은 현재로서는 쓸만한데, 글이 좀 많아지는 경우에는
-  몇가지 문제가 생길 수 있다 
+몇가지 문제가 생길 수 있다 
 
 - Orgmode article -> html 변환 : emacs + orgmode 버젼이 다른 경우 다른 formatting이 되는 경우가 있다
 - Orgmode article -> html 변환 속도 : 매번 변환 할 때마다 emacs launch하여 batch로 처리가 되다보니
@@ -31,32 +31,36 @@ Blogofile + orgmode extension 자체 solution은 현재로서는 쓸만한데, �
 	파일이 저장될 때 /updated:/ 항목을 갱신하는 방법으로 update를 변경하는 방법 : 페이지 자체에
 	불필요한 정보가 들어있다 보니 orgmode exporter가 처리가 안 되는 문제가 있다. 
 #+BEGIN_SRC emacs-lisp
-  (add-hook 'org-mode-hook
-            (lambda ()
-              (org-set-local 'yas/trigger-key  [tab])
-              (define-key yas/keymap [tab] 'yas/next-field-group)
-              (auto-fill-mode)
-              (add-hook 'local-write-file-hooks 'blog-updated-timestamp)
-              ))
-  
-  (defun blog-updated-timestamp ()
-    "Upate blog-updated-timestamp"
-    (save-excursion
-      (goto-char (point-min))
-      (let ((state buffer-read-only))
-        (when state (setq buffer-read-only nil))
-        (if (search-forward-regexp "^updated:" nil t)
-            (let ((beg (match-end 0)))
-              (end-of-line)
-              (delete-region beg (point))
-              (goto-char (match-end 0))
-              (kill-line)
-              (insert (format-time-string " %Y/%02m/%02d %02H:%02M:%02S\n" (current-time)))
+      (add-hook 'org-mode-hook
+                (lambda ()
+                  (org-set-local 'yas/trigger-key  [tab])
+                  (define-key yas/keymap [tab] 'yas/next-field-group)
+                  (auto-fill-mode)
+                  (add-hook 'local-write-file-hooks 'blog-updated-timestamp)
+                  ))
+      
+      (defun blog-updated-timestamp ()
+        "Upate blog-updated-timestamp"
+        (save-excursion
+          (goto-char (point-min))
+          (let ((state buffer-read-only))
+            (when state (setq buffer-read-only nil))
+            (if (search-forward-regexp "^updated:" nil t)
+                (let ((beg (match-end 0)))
+                  (end-of-line)
+                  (delete-region beg (point))
+                  (goto-char (match-end 0))
+                  (kill-line)
+                  (insert (format-time-string " %Y/%02m/%02d %02H:%02M:%02S\n" (current-time)))
+                  )
               )
-          )
-        (when state (setq buffer-read-only t)))))
+            (when state (setq buffer-read-only t)))))
 #+END_SRC
 
 ** 개선점
+
++ OrgPublish mode를 이용해서 html로 변환하고, 변환 data를 blogofile에 의해 처리하는건 어떨까?
+  + Updated 항목은 어떻게 처리할까?
+  + 전체적인 시스템 운용은 어떻게 될까?
 
 /To be continued.../
