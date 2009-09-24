@@ -1,6 +1,0 @@
-* 홈페이지 운영 서버 Specification<2009-09-15 Tue 17:50>  :homepage:notebook:
-
-#+ATTR_HTML: border="2" rules="all" frame="all"
-| CPU              | Memory | HDD | OS     |
-| M Pentium 4 2.2G | 1G     | 80G | Ubuntu |
-
