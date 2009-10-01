@@ -1,0 +1,109 @@
+
+
+<div id="outline-container-1" class="outline-2">
+<h2 id="sec-1">Emacs Tips <span class="timestamp-wrapper"> <span class="timestamp">2009-09-08 Tue 14:24</span></span> &nbsp;&nbsp;&nbsp;<span class="tag"><span class="emacs">emacs</span></span></h2>
+<div class="outline-text-2" id="text-1">
+
+
+
+</div>
+
+<div id="outline-container-1.1" class="outline-3">
+<h3 id="sec-1.1">모드별로 font 설정 바꾸기 </h3>
+<div class="outline-text-3" id="text-1.1">
+
+
+<p>
+Org 모드에서는 fixed with font인 NanumGodicCoding을 사용하는데, mail에는 가변폭 폰트를 사용하고 싶다. 
+<i>variable-picth-mode</i> 값을 세팅하면 된다(Emacs 23에서만 가능)
+</p>
+
+
+
+<pre class="src src-elisp">(setq message-mode-hook
+     (quote (
+     (<span style="color: #7f007f;">lambda</span> () (variable-pitch-mode t)) 
+     )))
+</pre>
+
+
+
+
+</div>
+
+</div>
+
+<div id="outline-container-1.2" class="outline-3">
+<h3 id="sec-1.2">현재 창에 보이는 font 크기 조절하기(Emacs 23) <span class="timestamp-wrapper"> <span class="timestamp">2009-09-17 Thu</span></span> </h3>
+<div class="outline-text-3" id="text-1.2">
+
+
+<p>
+Presentation 중에서 현재 보이는 창의 글자 크기를 조절할때 유용
+</p>
+<ul>
+<li>
+C-X C-= : Increase the default face height by one step (text-scale-adjust inc)
+</li>
+<li>
+C-X C&ndash; : Decrease the default face height by one step
+</li>
+<li>
+C-x 0   : Reset the default face height to the original default
+
+</li>
+<li>
+<a href="http://groups.google.co.kr/group/gnu.emacs.help/browse_thread/thread/8c8145102dadc34c">http://groups.google.co.kr/group/gnu.emacs.help/browse\_thread/thread/8c8145102dadc34c</a>
+</li>
+<li>
+<a href="http://stackoverflow.com/questions/534307/set-emacs-defaut-font-face-per-buffer-mode">http://stackoverflow.com/questions/534307/set-emacs-defaut-font-face-per-buffer-mode</a>
+
+</li>
+</ul>
+</div>
+
+</div>
+
+<div id="outline-container-1.3" class="outline-3">
+<h3 id="sec-1.3">Dired에서 path 이름 복사 </h3>
+<div class="outline-text-3" id="text-1.3">
+
+
+<ul>
+<li>
+w : dired-copy-filename-as-kill
+</li>
+<li>
+C-u 0 w : path 이름까지 복사
+
+</li>
+</ul>
+</div>
+
+</div>
+
+<div id="outline-container-1.4" class="outline-3">
+<h3 id="sec-1.4">EmacsW32에서 bell 소리 없애기 </h3>
+<div class="outline-text-3" id="text-1.4">
+
+
+<p>
+X 상에서야 xset b off 하면 나오는 삐삐 거리는 벨 소리를 없앨 수가 있지만, Win32상의 emacs에서는
+없애는 법이 없나 찾아보았다.  가장 손쉽게 할 수 있는 방법이 (setq visible-bell t) 로 하는 방법인데
+화면 frame이 번쩍번쩍 거려서 보기가 싫다.
+</p>
+<p>
+이런 용도로는 set-message-beep를 쓰면 된다. 
+</p>
+
+
+
+<pre class="src src-elisp">(set-message-beep 'silent)
+</pre>
+
+
+
+
+</div>
+</div>
+</div>

@@ -1,0 +1,75 @@
+
+
+<div id="outline-container-1" class="outline-2">
+<h2 id="sec-1">Orgmode를 이용한 Blogging (3) <span class="timestamp-wrapper"> <span class="timestamp">2009-09-24 Thu 20:31</span></span> &nbsp;&nbsp;&nbsp;<span class="tag"><span class="emacs">emacs</span>&nbsp;<span class="blog">blog</span></span></h2>
+<div class="outline-text-2" id="text-1">
+
+
+<ul>
+<li>
+관련 Link
+<ul>
+<li>
+<a href="/blog/bloggingwithorgmode">Orgmode를 이용한 Blogging</a>
+</li>
+<li>
+<a href="/blog/bloggingwithorgmode2">Orgmode를 이용한 Blogging (2)</a>
+</li>
+<li>
+<a href="/blog/bloggingwithorgmode3">Orgmode를 이용한 Blogging (3)</a>
+
+
+</li>
+</ul>
+</li>
+</ul>
+
+<p>Org file을 html 파일로 변환은 org-publish를 이용한다. 
+</p>
+
+
+
+<pre class="src src-elisp">(setq org-publish-project-alist
+      '(
+        (<span style="color: #bb8f8f;">"blog-posts"</span>
+         <span style="color: #da6fd5;">:base-directory</span> <span style="color: #bb8f8f;">"~/workspace/journal/org/blog"</span>
+         <span style="color: #da6fd5;">:publishing-function</span> org-publish-org-to-html-local
+         <span style="color: #da6fd5;">:base-extension</span> <span style="color: #bb8f8f;">"org"</span>
+         <span style="color: #da6fd5;">:publishing-directory</span> <span style="color: #bb8f8f;">"~/t/blogofile.com/_tmp"</span>
+         <span style="color: #da6fd5;">:inline-images</span> nil
+         <span style="color: #da6fd5;">:table-of-contents</span> nil
+         <span style="color: #da6fd5;">:drawers</span> nil
+         <span style="color: #da6fd5;">:todo-keywords</span> nil <span style="color: #b12121;">; </span><span style="color: #b12121;">Skip todo keywords
+</span>         <span style="color: #da6fd5;">:exclude</span> <span style="color: #bb8f8f;">"draft*"</span> <span style="color: #b12121;">; </span><span style="color: #b12121;">TODO fix
+</span>         <span style="color: #da6fd5;">:section-numbers</span> nil
+         <span style="color: #da6fd5;">:auto-index</span> nil
+         <span style="color: #da6fd5;">:auto-preamble</span> nil
+         <span style="color: #da6fd5;">:auto-postamble</span> nil
+         <span style="color: #da6fd5;">:timestamp</span>    t
+         <span style="color: #da6fd5;">:headline-levels</span> 3
+         )
+        ))
+</pre>
+
+
+
+
+<p>
+아래 내용은 <a href="http://blogofile.com">blogofile</a> 설정이나 디렉토리 구조와 많은 연관이 있다. 
+</p>
+<p>
+다른 org journal 파일과 함께 관리하는 blog용 org 파일은 ~/workspace/journal/org/blog 디렉토리에
+저장이 되어 있다. publishing-function으로 org-publish-org-to-html-local 함수를 이용하였다. 
+기존의 org-publish-org-to-html 함수와 동일한 기능을 하되, publish할 때 body 부분만 옮기게 된다. 
+</p>
+<p>
+org-publish-all을 하게 되면 blog 밑의 article들이 ~/t/blogofile.com/_tmp로 옮겨지게 된다. 
+Blogofile default setting으로 _ 로 시작하는 파일이나 디렉토리는 무시된다. 
+</p>
+<p>
+_config.py의 pre_build 함수에서 _tmp 파일을 읽어서 적당한 yaml header를 붙여서 html 파일로 만들어
+_post directory로 옮기게 된다. 옮길 때 last modified time은 publish된 html의 file의 timestamp를 
+읽어서 처리한다. 또한 title과 category, date 항목도 변환된 html source로부터 자동 추출해 낸다. 
+</p>
+</div>
+</div>

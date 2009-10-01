@@ -1,0 +1,485 @@
+
+
+<div id="outline-container-1" class="outline-2">
+<h2 id="sec-1">OpenLDAP(slapd)를 이용하여 Addressbook 구축하기 <span class="timestamp-wrapper"> <span class="timestamp">2009-09-16 Wed 14:33</span></span> &nbsp;&nbsp;&nbsp;<span class="tag"><span class="linux">linux</span>&nbsp;<span class="ldap">ldap</span></span></h2>
+<div class="outline-text-2" id="text-1">
+
+
+<p>
+LDAP은 "the Lightweight Directory Access Protocol"의 약자로 RFC 1777에 정의된
+디렉토리 어플리케이션을 위한 통신 프로토콜이다. 
+</p>
+<blockquote>
+
+<p>Quoted from RFC 1777:
+</p>
+<p>
+[LDAP] is designed to provide access to the X.500 Directory while
+not incurring the resource requirements of the Directory Access
+Protocol (DAP). This protocol is specifically targeted at simple
+management applications and browser applications that provide
+simple read/write interactive access to the X.500 Directory, and
+is intended to be a complement to the DAP itself.
+</p>
+</blockquote>
+
+
+<p>
+LDAP 문서에서 주로 언급이 되듯이 LDAP은 시스템 관리나 고급 사용자에게 매혹적인 기능을 제공하지만,
+설치 및 운영에 진입 장벽이 있다. 즉, 간단히 좀 써보고 싶어도 선뜻 손이 안 가게 된다. 
+</p>
+<p>
+LDAP 디렉토리는 계층 구조의 <i>entries</i>들의 집합으로 구성되어 있다. 각 entry들은 
+<i>Object Class</i>에 속하고, <i>key=value</i>라는 <i>attributes</i>들을 갖는다. 각 entry는 <i>Distinguished Name</i> (DN)으로
+구별된다. DN는 comma로 구별된 컴포넌트 리스트로 구성되어 있다. 즉, <b>Example, Inc</b>라는 회사는 
+<i>dc=example, dc=com</i>. 이라는 항목을 갖는다. Example Inc.에 속하는 사람은 DN
+<i>cn=person,ou=People,dc=example,dc=com</i>라는 LDAP entry를 가질 수 있다. <b>cn</b>, <b>ou</b>, <b>dc</b>는 각각 <i>Common Name</i>,
+<i>Organizational Unit</i>, <i>Domain Component</i>를 나타낸다. 
+</p>
+
+</div>
+
+<div id="outline-container-1.1" class="outline-3">
+<h3 id="sec-1.1">설치 </h3>
+<div class="outline-text-3" id="text-1.1">
+
+
+<p>
+mail, subverison, trac, XpressEngine, git 등의 계정을 통합관리하고, AddressBook을 위해
+LDAP 서버를 설정하기로 했다. 많이 알려져 있는 slapd를 인스톨하기로 결정했다. 
+</p>
+<pre class="example">
+# apt-get install slapd ldap-utils libldap2
+# dpkg-reconfigure slapd
+</pre>
+
+
+<p>
+현재 테스트 시스템은 <i>nemustech.com</i>이고 IP는 <i>127.0.0.1</i>을 갖고 있다. 
+slapd configration 설정을 다음과 같이 설정하였다. 
+</p>
+<pre class="example">
+Omit OpenLDAP server configuration? No
+DNS domain name? : nemustech.com
+Organization name? : nemustech.com
+Adminiatrator password: PASSWORD
+Confirm Password: PASSWORD
+Database backend to use : HDB
+Allo LDAPv2 protocol? : YES
+</pre>
+
+
+<p>
+/etc/ldap/ldap.conf 파일의 설정을 맞춰서 <b>ldapsearch</b> 프로그램이 특별한 option 없이 수행할 수
+있도록 한다. 
+</p>
+<pre class="example">
+BASE dc=nemustech, dc=com
+URI ldap://127.0.0.1/
+</pre>
+
+
+<p>
+/etc/ldap/slapd.conf 파일에 다음과 같은 schema가 제대로 설정되었는지 확인한다. 
+</p>
+<pre class="example">
+include   /etc/ldap/schema/core.schema
+include   /etc/ldap/schema/cosine.schema
+include   /etc/ldap/schema/nis.schema
+include   /etc/ldap/schema/inetorgperson.schema
+</pre>
+
+
+<p>
+Log level을 "none"에서 "256"으로 변경한다
+</p>
+<pre class="example">
+loglevel 256
+</pre>
+
+
+<p>
+새로운 index option이 적용하기 위해서 다음과 같은 명령을 수행한다
+</p>
+<pre class="example">
+sudo invoke-rc.d slapd stop
+sudo slapindex
+sudo chwon openldap:openldap /var/lib/ldap/*
+sudo invoke-rc.d slapd start
+</pre>
+
+
+</div>
+
+</div>
+
+<div id="outline-container-1.2" class="outline-3">
+<h3 id="sec-1.2">초기 테스트 </h3>
+<div class="outline-text-3" id="text-1.2">
+
+
+<p>
+기본적인 테스트는 <b>ldapsearch(online)</b>프로그램과 <b>slapcat(offline)</b>으로 한다. 
+</p>
+<pre class="example">
+jmjeong@coco:/etc/ldap$ ldapsearch -x
+</pre>
+
+
+
+
+<pre class="example"># extended LDIF
+#
+# LDAPv3
+# base &lt;dc=nemustech,dc=com&gt; (default) with scope subtree
+# filter: (objectclass=*)
+# requesting: ALL
+#
+
+# nemustech.com
+dn: dc=nemustech,dc=com
+objectClass: top
+objectClass: dcObject
+objectClass: organization
+o: nemustech.com
+dc: nemustech
+
+# admin, nemustech.com
+dn: cn=admin,dc=nemustech,dc=com
+objectClass: simpleSecurityObject
+objectClass: organizationalRole
+cn: admin
+description: LDAP administrator
+
+# search result
+search: 2
+result: 0 Success
+
+# numResponses: 3
+# numEntries: 2
+</pre>
+
+
+
+
+<pre class="example">
+jmjeong@coco:/etc/ldap$ sudo  slapcat
+</pre>
+
+
+
+
+<pre class="example">dn: dc=com
+objectClass: top
+objectClass: dcObject
+objectClass: organization
+o: com
+dc: com
+structuralObjectClass: organization
+entryUUID: 1b3be776-155d-102e-851d-0b1420b039d9
+creatorsName:
+createTimestamp: 20090804161043Z
+entryCSN: 20090804161043.674138Z#000000#000#000000
+modifiersName:
+modifyTimestamp: 20090804161043Z
+
+dn: cn=admin,dc=com
+objectClass: simpleSecurityObject
+objectClass: organizationalRole
+cn: admin
+description: LDAP administrator
+userPassword:: e2NyeXB0fXNvSHpoQjJoeTdNZnc=
+structuralObjectClass: organizationalRole
+entryUUID: 1b3fa014-155d-102e-851e-0b1420b039d9
+creatorsName:
+createTimestamp: 20090804161043Z
+entryCSN: 20090804161043.698641Z#000000#000#000000
+modifiersName:
+modifyTimestamp: 20090804161043Z
+
+dn: dc=nemustech,dc=com
+objectClass: top
+objectClass: dcObject
+objectClass: organization
+o: nemustech.com
+dc: nemustech
+structuralObjectClass: organization
+entryUUID: 3804d110-36dc-102e-9ae4-31eb0a7ccf8f
+creatorsName:
+createTimestamp: 20090916071346Z
+entryCSN: 20090916071346.423371Z#000000#000#000000
+modifiersName:
+modifyTimestamp: 20090916071346Z
+
+dn: cn=admin,dc=nemustech,dc=com
+objectClass: simpleSecurityObject
+objectClass: organizationalRole
+cn: admin
+description: LDAP administrator
+userPassword:: e2NyeXB0fXd2cFc1QUYxVmZnY0U=
+structuralObjectClass: organizationalRole
+entryUUID: 380a973a-36dc-102e-9ae5-31eb0a7ccf8f
+creatorsName:
+createTimestamp: 20090916071346Z
+entryCSN: 20090916071346.461311Z#000000#000#000000
+modifiersName:
+modifyTimestamp: 20090916071346Z
+</pre>
+
+
+
+
+
+</div>
+
+</div>
+
+<div id="outline-container-1.3" class="outline-3">
+<h3 id="sec-1.3">기본적인 트리 구조 생성하기 </h3>
+<div class="outline-text-3" id="text-1.3">
+
+
+<p>
+LDAP DB는 트리로 이루어져 있다. 최상위 element는 보통 일반적으로 도메인 이름으로 만들어진다. 
+nemustech.com 의 경우에는, 최상위 트리 element는 <i>dc=nemustech,dc=com</i>이다.
+</p>
+<p>
+Organizational은 people, groups, hosts, services, networks등의 'organizational unit'으로 나눌 수
+있다. Ldap data은 <b>LDIF</b>라는 텍스트 포맷을 통해 교환된다. 커맨드라인 LDAP utliity를 이용하여 이
+데이타를 추가하거나 변경, 삭제할 수 있다. 
+</p>
+<p>
+주소록을 위한 addressbook organizational unit을 만들어보자.
+</p>
+<p>
+/tmp/ou.ldif 를 만들어 addressbook이라는 organizational unit을 추가하자
+</p>
+
+
+
+<pre class="example">jmjeong@coco:/tmp$ more ou.ldif 
+dn: ou=addressbook,dc=nemustech,dc=com
+ou: addressbook
+objectClass: organizationalUnit
+</pre>
+
+
+
+
+<p>
+LDIF를 서버에 로딩하기 위해, <b>slapadd</b>을 이용한다.
+</p>
+<pre class="example">
+sudo invoke-rc.d slapd stop
+jmjeong@coco:/tmp$ sudo slapadd -c -v -l /tmp/ou.ldif 
+added: "ou=Addressbook,dc=nemustech,dc=com" (00000005)
+sudo invoke-rc.d slapd start
+</pre>
+
+
+<p>
+제대로 추가되었는지 확인하기 위해서 <b>ldapsearch</b>를 이용하여 확인을 하자 
+</p>
+
+
+
+<pre class="example">jmjeong@coco:/tmp$ ldapsearch -x ou=addressbook
+# extended LDIF
+#
+# LDAPv3
+# base &lt;dc=nemustech,dc=com&gt; (default) with scope subtree
+# filter: ou=addressbook
+# requesting: ALL
+#
+
+# Addressbook, nemustech.com
+dn: ou=Addressbook,dc=nemustech,dc=com
+ou: Addressbook
+objectClass: organizationalUnit
+
+# search result
+search: 2
+result: 0 Success
+
+# numResponses: 2
+# numEntries: 1
+</pre>
+
+
+
+
+</div>
+
+</div>
+
+<div id="outline-container-1.4" class="outline-3">
+<h3 id="sec-1.4">주소록 데이타 입력하기 </h3>
+<div class="outline-text-3" id="text-1.4">
+
+
+<p>
+Addressbook에 entry 하나를 등록해보자. 
+먼저 각 entry에 어떤 정보가 저장되어야 할지 결정해야 한다. 그러기 위해서는 필요정보들이 적절한 LDAP
+attribute에 매핑시키는 작업이 필요하다.  일반적인 주소록 항목은 이름, 주소, 전화번호, email,등을
+가지고 있다. 실 생활의 attribute와 LDAP attribute를 매핑시키기 위해 다음과 같은 테이블을 사용하자. 
+</p>
+<table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
+<caption></caption>
+<colgroup><col align="left" /><col align="left" /><col align="left" />
+</colgroup>
+<thead>
+<tr><th scope="col">Attribute</th><th scope="col">ObjectClass</th><th scope="col">Meaning</th></tr>
+</thead>
+<tbody>
+<tr><td>commonName, cn</td><td>person</td><td>Individual's full name</td></tr>
+<tr><td>givenName, gn</td><td>inetOrgPerson</td><td>Individual's first name</td></tr>
+<tr><td>surname, sn</td><td>person</td><td>Individual's last name</td></tr>
+<tr><td>physicalDeliveryOfficeName</td><td>organizationalPerson</td><td>Department or delivery office name</td></tr>
+<tr><td>mail</td><td>inetOrgPerson</td><td>Email address</td></tr>
+<tr><td>postalAddress</td><td>organizationalPerson</td><td>Street mailing address</td></tr>
+<tr><td>l</td><td>organizationalPerson</td><td>City</td></tr>
+<tr><td>st</td><td>organizationalPerson</td><td>State</td></tr>
+<tr><td>postalCode</td><td>organizationalPerson</td><td>Postal (ZIP) code</td></tr>
+<tr><td>telephoneNumber</td><td>organizationalPerson</td><td>Work number</td></tr>
+<tr><td>facsimileTelephoneNumber</td><td>organizationalPerson</td><td>Fax number</td></tr>
+<tr><td>pager</td><td>inetOrgPerson</td><td>Pager number</td></tr>
+<tr><td>mobile</td><td>inetOrgPerson</td><td>Mobile phone number</td></tr>
+<tr><td>homePhone</td><td>inetOrgPerson</td><td>Home phone number</td></tr>
+</tbody>
+</table>
+
+
+<p>
+디렉토리의 각 항목은 구별되는 <b>DN</b>을 필요로 한다. 여기서는 <i>full name</i>을 구별되는 이름으로 사용하자. 
+<i>full name</i>은 commonName, cn으로 정의되어 있다.  Attribute를 등록할때는 그 attribute가 정의되는
+ObjectClass들도 명시를 해야 한다. 
+</p>
+
+
+
+<pre class="example">dn: cn=Jane Doe, ou=addressbook, dc=example, dc=com
+objectClass: top
+objectClass: person
+objectClass: organizationalPerson
+objectClass: inetOrgPerson
+cn: Jane Doe
+gn: Jane
+sn: Doe
+mail: jane.doe@example.com
+physicalDeliveryOfficeName: Conglomo, Inc., Financial Services
+postalAddress: PO BOX 55555
+l: Baton Rouge
+ou: addressbook
+st: LA
+postalCode: 70555
+telephoneNumber: 555-555-5555
+facsimileTelephoneNumber: 555-555-5556
+pager: 555-555-5557
+mobile: 555-555-5558
+homePhone: 555-555-5559
+</pre>
+
+
+
+
+
+<pre class="example">jmjeong@coco:/etc/ldap$ ldapadd -c -x -D 'cn=admin,dc=nemustech,dc=com' -f /tmp/contact.ldif -W -x
+Enter LDAP Password: PASSWORD
+adding new entry "cn=Jane Doe, ou=addressbook, dc=nemustech, dc=com"
+</pre>
+
+
+
+
+<p>
+<i>ldapsearch</i>를 이용하여 입력된 값이 제대로 들어갔는지 확인을 하자. 
+</p>
+
+
+
+<pre class="example">jmjeong@coco:/etc/ldap$ ldapsearch -x -b 'ou=addressbook,dc=nemustech,dc=com' '(objectclass=*)'
+# extended LDIF
+#
+# LDAPv3
+# base &lt;ou=addressbook,dc=nemustech,dc=com&gt; with scope subtree
+# filter: (objectclass=*)
+# requesting: ALL
+#
+
+# Addressbook, nemustech.com
+dn: ou=Addressbook,dc=nemustech,dc=com
+ou: Addressbook
+objectClass: organizationalUnit
+
+# Jane Doe, addressbook, nemustech.com
+dn: cn=Jane Doe,ou=addressbook,dc=nemustech,dc=com
+objectClass: top
+objectClass: person
+objectClass: organizationalPerson
+objectClass: inetOrgPerson
+cn: Jane Doe
+givenName: Jane
+sn: Doe
+mail: jane.doe@nemustech.com
+physicalDeliveryOfficeName: Nemustech, Seoul
+postalAddress: PO BOX 55555
+l: Baton Rouge
+ou: addressbook
+st: LA
+postalCode: 70555
+telephoneNumber: 555-555-5555
+facsimileTelephoneNumber: 555-555-5556
+pager: 555-555-5557
+mobile: 555-555-5558
+homePhone: 555-555-5559
+
+# search result
+search: 2
+result: 0 Success
+
+# numResponses: 3
+# numEntries: 2
+</pre>
+
+
+
+
+<p>
+추가된 LDAP 서버는 thunderbird나 outlook express등에서 LDAP server로 지정하여 사용을 할 수 있다. 
+Thunderbird의 주소록 자동 완성에 '디렉토리서버'를 활성화하고, 다음과 같이 설정을 하였다. 
+</p>
+
+
+
+<pre class="example">이름 : nemustech
+호스트이름 : nemustech.com
+Base DN : ou=addressbook, dc=nemustech, dc=com
+포트 번호 : 389
+</pre>
+
+
+
+
+<p>
+편지 보내기를 할때, 등록한 jane.doe@nemustech.com이 자동완성되는 것을 확인할 수 있다. 
+</p>
+</div>
+
+</div>
+
+<div id="outline-container-1.5" class="outline-3">
+<h3 id="sec-1.5">참고문헌 </h3>
+<div class="outline-text-3" id="text-1.5">
+
+
+<ul>
+<li>
+<a href="http://techpubs.spinlocksolutions.com/dklar/ldap.html">http://techpubs.spinlocksolutions.com/dklar/ldap.html</a>
+</li>
+<li>
+<a href="http://onlamp.com/pub/a/onlamp/2003/03/27/ldap_ab.html">http://onlamp.com/pub/a/onlamp/2003/03/27/ldap\_ab.html</a>
+</li>
+</ul>
+</div>
+</div>
+</div>

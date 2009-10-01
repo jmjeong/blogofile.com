@@ -1,0 +1,52 @@
+
+
+<div id="outline-container-1" class="outline-2">
+<h2 id="sec-1">Emacs에서 Python mode setting <span class="timestamp-wrapper"> <span class="timestamp">2009-09-02 Wed 18:22</span></span> &nbsp;&nbsp;&nbsp;<span class="tag"><span class="emacs">emacs</span>&nbsp;<span class="python">python</span></span></h2>
+<div class="outline-text-2" id="text-1">
+
+
+<p>
+Emacs 23에 emacs에서 built-in으로 존재하는 python.el과 Python Distribution에서 배포 중인 python-mode.el 모드
+두개가 존재한다. EmacsWiki와 mailing list에 한참 두개를 통합하자는 논의가 있었는데 결론이 아직 안 난듯하다. 
+License issue로 한참 이야기 중이던데, 최근 받아본 python-mode.el은 GPL v3.0으로 되어 있는걸 보면 해결 기미가
+보이는 것 같기도 하다. 
+</p>
+<p>
+결론적으로는 python-mode.el과 ipython을 사용하기로 했다. 아직 todo로 pdb와 ropemacs 세팅이 남아
+있는데 당분간은 이대로 써야겠다.
+</p>
+
+
+
+<pre class="src src-emacs-lisp"><span style="color: #b12121;">;; </span><span style="color: #b12121;">python mode
+</span>(load <span style="color: #bb8f8f;">"python-mode"</span> nil t)
+(autoload 'python-mode <span style="color: #bb8f8f;">"python-mode"</span> <span style="color: #bb8f8f;">"Python editing mode."</span> t)
+
+(setq auto-mode-alist (cons '(<span style="color: #bb8f8f;">"\\.py$"</span> . python-mode) auto-mode-alist))
+(setq interpreter-mode-alist (cons '(<span style="color: #bb8f8f;">"python"</span> . python-mode)
+                                      interpreter-mode-alist))
+(autoload 'python-mode <span style="color: #bb8f8f;">"python"</span> <span style="color: #bb8f8f;">"Python editing mode."</span> t)
+(setq python-mode-hook
+      '(<span style="color: #7f007f;">lambda</span> () (<span style="color: #7f007f;">progn</span>
+                    (set-variable 'py-indent-offset 4)
+                    (set-variable 'py-smart-indentation nil)
+                    <span style="color: #b12121;">; </span><span style="color: #b12121;">python mode&#50640;&#49436;&#45716; tab&#45824;&#49888; space&#47484;
+</span>                    (set-variable 'indent-tabs-mode nil) 
+                    (eldoc-mode 1))))
+
+<span style="color: #b12121;">;; </span><span style="color: #b12121;">iPython settting
+</span>(setq ipython-command <span style="color: #bb8f8f;">"/opt/local/bin/ipython2.5"</span>)
+(<span style="color: #7f007f;">require</span> '<span style="color: #5f9e9f;">ipython</span>)
+</pre>
+
+
+
+
+<ul>
+<li>
+5.1.0 버젼의 python-mode.el에는 triple quote(""")에 대한 font-lock에 문제가 있다. 메일링리스트에서
+패치를 찾아서 <a href="http://github.com/jmjeong/my-dot-emacs/blob/130e8d593cc49ca5e5d62d5b4fdb4c79c24aea90/python-mode.el">적용</a>하여 해결했다. ( <span class="timestamp-wrapper"> <span class="timestamp">2009-09-10 Thu</span></span>)
+</li>
+</ul>
+</div>
+</div>
