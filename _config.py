@@ -137,10 +137,88 @@ ignore_patterns = [
     r".*([\/]|[\\])CVS"    #CVS dir
     ]
 
+import logging
+import datetime
+import pytz
+import re
+from BeautifulSoup import *
+logger = logging.getLogger("blogofile.config")
+
+org_exported_src_dir = "_tmp"
+html_dest_dir = "_posts"
+
+yaml_template = """---
+title: %s
+date : %s
+categories: %s  
+---
+"""
+
 ### Pre/Post build hooks:
 def pre_build():
     #Do whatever you want before the _site is built
-    pass
+    """For the org exported file in _tmp directory, add yaml header and
+       move it to _post directory"""
+    posts = []
+    if not os.path.isdir(org_exported_src_dir):
+        logger.error("There is no __tmp directory")
+        return
+    post_file_names = [f for f in os.listdir(org_exported_src_dir) \
+                           if f.endswith(".html")]
+    for post_fn in post_file_names:
+        post_path = os.path.join(org_exported_src_dir,post_fn)
+        logger.info("pre_build : process %s" % post_path)
+        
+        src = open(post_path,"r").read().decode(blog_post_encoding)
+        content = process_file(src)
+        f = open(os.path.join(html_dest_dir, post_fn), "w")
+        f.write(content.encode(blog_post_encoding))
+        f.close()
+
+def get_string(parent):
+    l = []
+    for tag in parent:
+        if isinstance(tag, NavigableString):
+            l.append(tag.string)
+        else:
+            l.extend(get_string(tag))
+    return "".join(l)
+
+def process_file(src):
+    soup = BeautifulSoup(src)
+
+    # the first h2 section will be used for title, category, and date
+    metaline = soup.find('div', {'id': 'outline-container-1'}).h2
+
+    # extract title
+    title = re.sub('&nbsp;', '', metaline.contents[0]).strip()
+
+    # extract category
+    categories = ", ".join(get_string(metaline('span', {'class':'tag'})).split('&nbsp;'))
+
+    # extract date
+    dateStr = metaline('span', {'class':'timestamp'})[0].string # 2009-08-22 Sat 15:22
+    # date_format = "%Y/%m/%d %H:%M:%S"
+    date = datetime.datetime.strptime(dateStr, "%Y-%m-%d %a %H:%M")
+    date = date.replace(tzinfo=pytz.timezone(blog_timezone))
+    dateStr = date.strftime("%Y/%m/%d %H:%M:00")
+
+    # delete first h2 section (which is title and category)
+    metaline.extract()
+
+    # 2009/09/25 14:39:23n
+    yamlHeader = yaml_template % (title, dateStr, categories)
+
+    # Print soup.body
+    tocStr = soup.find('div',  {'id': 'table-of-contents'})
+    contentStr = soup.find('div', {'id': 'outline-container-1'})
+    
+    if tocStr != None:
+        contentStr = str(tocStr) + str(contentStr)
+
+    content = yamlHeader + str(contentStr).decode(blog_post_encoding)
+    return content
+    
 def post_build():
     #Do whatever you want after the _site is built
     pass
@@ -151,9 +229,7 @@ def post_excerpt(content, num_words=50):
     #defining post_excerpt(content,num_words)
     """Retrieve excerpt from article"""
 
-    import BeautifulSoup
-
-    s = BeautifulSoup.BeautifulSoup(content)
+    s = BeautifulSoup(content)
 
     excerpt = ''.join([str(e).decode('utf-8') for e in s.findAll('p', limit=2)])
     excerpt += "<i>Read more...</i>"

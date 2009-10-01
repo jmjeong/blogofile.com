@@ -2,7 +2,7 @@
 <div class="blog_post">
   <a name="${post.title}" />
   <h2 class="blog_post_title"><a href="${post.permapath()}" rel="bookmark" title="Permanent Link to ${post.title}">${post.title}</a></h2>
-  <small>${post.date.strftime("%B %d, %Y")} | categories: 
+  <small>Updated: ${post.updated.strftime("%B %d, %Y")} | categories: 
 <% 
    category_links = []
    for category in post.categories:
@@ -17,6 +17,7 @@ ${", ".join(category_links)} | <a href="${post.permalink}#disqus_thread">View Co
   <span class="post_prose">
     ${self.post_prose(post)}
   </span>
+  <small>- Post Date: ${post.date.strftime("%B %d, %Y")}</small>
 </div>
 
 <%def name="post_prose(post)">
