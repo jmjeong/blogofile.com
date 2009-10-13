@@ -96,14 +96,14 @@ div#prose_block {
     padding:0 0 10px 10px;
     width: 660px; 
 }
-div#prose_block h2 {
-    font-size:1.1em;
-    font-weight:normal;
-    margin:20px 0 0;
-    padding:0;
-    text-decoration:none;
-	color:black;
-}
+/* div#prose_block h2 { */
+/*     font-size:1.1em; */
+/*     font-weight:normal; */
+/*     margin:20px 0 0; */
+/*     padding:0; */
+/*     text-decoration:none; */
+/* 	color:black; */
+/* } */
 div#prose_block h2.intrablog {
     color:#000000;
     margin-bottom: 20px;

@@ -1,17 +1,17 @@
-
-
+---
+title: cal-korean.el
+date : 2009/09/10 21:25:00
+updated: 2009/10/01 18:13:00
+categories: emacs  
+---
 <div id="outline-container-1" class="outline-2">
-<h2 id="sec-1">cal-korean.el <span class="timestamp-wrapper"> <span class="timestamp">2009-09-10 Thu 21:25</span></span> &nbsp;&nbsp;&nbsp;<span class="tag"><span class="emacs">emacs</span></span></h2>
+
 <div class="outline-text-2" id="text-1">
-
-
 <ul>
 <li>
 파일 download link : <a href="http://github.com/jmjeong/my-dot-emacs/blob/130e8d593cc49ca5e5d62d5b4fdb4c79c24aea90/cal-korean.el">Emacs 23용</a>, <a href="http://jmjeong.com/index.php?display=Emacs/Cal-Korea">Emacs 22용</a>
-
 </li>
 </ul>
-
 <p>Emacs의 calendar에 대한민국 음력을 표시해 주는 elisp 파일이다. 
 </p>
 <p>
@@ -22,9 +22,6 @@ Timezone 때문에 1시간의 차이가 난다. cal-china.el 파일을 기반으
 <p>
 기본적인 사용은 .emacs 파일에 아래와 같은 내용을 추가한다. 
 </p>
-
-
-
 <pre class="src src-emacs-lisp"><span style="color: #b12121;">;; </span><span style="color: #b12121;">calendar korean lunar
 </span>(<span style="color: #7f007f;">if</span> (= emacs-major-version 23)
     (<span style="color: #7f007f;">require</span> '<span style="color: #5f9e9f;">cal-korean</span>)
@@ -36,61 +33,35 @@ Timezone 때문에 1시간의 차이가 난다. cal-china.el 파일을 기반으
      (setq calendar-korean-print-long-description t)
      ))
 </pre>
-
-
-
-
 <p>
 M-x calendar를 구동하여 'p l'을 누르면 오늘 날짜에 해당하는 음력이 출력된다
 </p>
-
 <div class="figure">
-<p><img src="/images/cal-korean.png"  alt="/images/cal-korean.png" /></p>
+<p><img src="/images/cal-korean.png" alt="/images/cal-korean.png" /></p>
 </div>
-
 <p>
 또한 'g l'을 누르면 특정 날짜의 음력날짜를 입력받아서, 그 날에 해당하는 양력 날짜를 출력한다. 
 </p>
-
-
-
 <pre class="src src-elisp">(setq calendar-korean-print-long-description nil)
 </pre>
-
-
-
-
 <p>
 long-description 값이 nil일 때는 간단한 포맷으로 출력한다 
 </p>
-
-
 <div class="figure">
-<p><img src="/images/cal-korean-brief.png"  alt="/images/cal-korean-brief.png" /></p>
+<p><img src="/images/cal-korean-brief.png" alt="/images/cal-korean-brief.png" /></p>
 </div>
-
 <p>
 diary mode나 org-mode를 위한 함수또한 추가되었다. Org-mode의 agenda를 표시할 때 diary항목도 추가하기
 원할 때는 아래 변수를 세팅하면 된다. 
 </p>
-
-
-
 <pre class="src src-elisp"><span style="color: #b12121;">;; </span><span style="color: #b12121;">diary file &#51648;&#51221;
 </span>(setq diary-file <span style="color: #bb8f8f;">"~/diary"</span>)
 <span style="color: #b12121;">;; </span><span style="color: #b12121;">diary entry &#54252;&#54632;
 </span>(setq org-agenda-include-diary t)
 </pre>
-
-
-
-
 <p>
 <b>Diary File Format</b>
 </p>
-
-
-
 <pre class="src src-elisp">%%(diary-anniversary 5 1) &#45432;&#46041;&#51208;
 %%(diary-lunar-anniversary 1 1) &#49444; - %s
 %%(diary-lunar-anniversary 8 15) &#52628;&#49437; - %s
@@ -100,10 +71,6 @@ diary mode나 org-mode를 위한 함수또한 추가되었다. Org-mode의 agend
 
 %%(diary-lunar-anniversary 12 4 1970) &#51221;&#51116;&#47785; - %s(%d)
 </pre>
-
-
-
-
 <p>
 일반적으로 diary 파일에서 사용하는 것처럼 음력에 해당하는 날짜를 calendar에 표시를 해 준다. 
 앞의 그림에서 <i>darkred</i> 로 표시된 것이 기념일에 해당하는 날짜이다. '추석'또한 기념일로
@@ -115,13 +82,11 @@ cal-korean.el 에서 새로 추가 지원되는 함수는 다음과 같다.
 <ul>
 <li>
 <i>(diary-korean-date)</i>
-
 <p>
 각 날짜에 속하는 음력 날짜를 출력한다. 주로 org-mode agenda에서 양력 날짜와 함께 음력을 출력할 때 사용한다. 
 </p></li>
 <li>
-<i>(diary-lunar-date MONTH DAY YEAR &amp;optional LEAP MARK)</i> 
-
+<i>(diary-lunar-date MONTH DAY YEAR &amp;optional LEAP MARK)</i>
 <p>
 diary-date에 상대되는 음력 함수이다. MONTH, DAY, YEAR 각 항목을 t로 지정하여 무시할 수 있다. 
 사용방법으로 '%% (diary-lunar-date 1 1 t) 설날 - %s'와 같이 사용되고 이 중 '%s'는 출력되는 format에 맞는
@@ -129,8 +94,7 @@ diary-date에 상대되는 음력 함수이다. MONTH, DAY, YEAR 각 항목을 t
 </p>
 </li>
 <li>
-<i>(diary-lunar-anniversary MONTH DAY &amp;optional YEAR LEAP MARK)</i> 
-
+<i>(diary-lunar-anniversary MONTH DAY &amp;optional YEAR LEAP MARK)</i>
 <p>
 diary-anniversary에 상대되는 음력함수 이다. YEAR가 입력된 경우에는 해당 기념일이 기념일로부터 
 몇 년이 지났는지를 계산하여 출력한다. 
@@ -141,8 +105,6 @@ diary-anniversary에 상대되는 음력함수 이다. YEAR가 입력된 경우�
 LEAP에 t를 입력하면 된다.  %s %d가 이 순서대로 나와야 한다.
 출력결과는 '정재목 - 음력 12월 4일(37)'이 된다. 
 </p>
-
-
 </li>
 </ul>
 </div>

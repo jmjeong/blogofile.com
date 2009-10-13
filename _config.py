@@ -119,6 +119,11 @@ site_css_dir = "/css"
 #### Post encoding ####
 blog_post_encoding = "utf-8"
 
+#### Post sort order ####
+# If this value is 'date', blog articles are sorted by creation time.
+# If this value is 'updated', blog articles are sorted by modification time.
+blog_post_sort_order = "updated"    
+
 ######################################################################
 # Advanced Settings
 ######################################################################
@@ -141,6 +146,7 @@ import logging
 import datetime
 import pytz
 import re
+import os
 from BeautifulSoup import *
 logger = logging.getLogger("blogofile.config")
 
@@ -150,6 +156,7 @@ html_dest_dir = "_posts"
 yaml_template = """---
 title: %s
 date : %s
+updated: %s
 categories: %s  
 ---
 """
@@ -170,7 +177,8 @@ def pre_build():
         logger.info("pre_build : process %s" % post_path)
         
         src = open(post_path,"r").read().decode(blog_post_encoding)
-        content = process_file(src)
+        updated = os.path.getmtime(post_path)   # time of most recent content modification
+        content = process_file(src, updated)
         f = open(os.path.join(html_dest_dir, post_fn), "w")
         f.write(content.encode(blog_post_encoding))
         f.close()
@@ -184,7 +192,7 @@ def get_string(parent):
             l.extend(get_string(tag))
     return "".join(l)
 
-def process_file(src):
+def process_file(src, updated):
     soup = BeautifulSoup(src)
 
     # the first h2 section will be used for title, category, and date
@@ -203,20 +211,33 @@ def process_file(src):
     date = date.replace(tzinfo=pytz.timezone(blog_timezone))
     dateStr = date.strftime("%Y/%m/%d %H:%M:00")
 
+    # updated time
+    updated = datetime.datetime.fromtimestamp(updated)
+    updated = updated.replace(tzinfo=pytz.timezone(blog_timezone))
+    updatedStr = updated.strftime("%Y/%m/%d %H:%M:00")
+
     # delete first h2 section (which is title and category)
     metaline.extract()
 
     # 2009/09/25 14:39:23n
-    yamlHeader = yaml_template % (title, dateStr, categories)
+    yamlHeader = yaml_template % (title, dateStr, updatedStr, categories)
 
     # Print soup.body
     tocStr = soup.find('div',  {'id': 'table-of-contents'})
     contentStr = soup.find('div', {'id': 'outline-container-1'})
+    footnoteStr = soup.find('div', {'id': 'footnotes'})
     
     if tocStr != None:
         contentStr = str(tocStr) + str(contentStr)
 
+    # if footnoteStr exists, add it to contentStr
+    # if footnoteStr != None:
+    #     contentStr += str(footnoteStr)
+
     content = yamlHeader + str(contentStr).decode(blog_post_encoding)
+    if footnoteStr != None:
+        content += "\n" + str(footnoteStr).decode(blog_post_encoding)
+        
     return content
     
 def post_build():

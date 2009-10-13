@@ -1,84 +1,61 @@
-
-
+---
+title: Git Tips
+date : 2009/09/08 15:42:00
+updated: 2009/10/12 15:15:00
+categories: git, linux  
+---
 <div id="outline-container-1" class="outline-2">
-<h2 id="sec-1">Git Tips <span class="timestamp-wrapper"> <span class="timestamp">2009-09-08 Tue 15:42</span></span> &nbsp;&nbsp;&nbsp;<span class="tag"><span class="git">git</span>&nbsp;<span class="linux">linux</span></span></h2>
+
 <div class="outline-text-2" id="text-1">
-
-
-
 </div>
-
 <div id="outline-container-1.1" class="outline-3">
 <h3 id="sec-1.1">git clean </h3>
 <div class="outline-text-3" id="text-1.1">
-
-
 <p>
 현재 Working tree에서 untracked file을 지우는 명령어
 </p>
 </div>
-
 </div>
-
 <div id="outline-container-1.2" class="outline-3">
 <h3 id="sec-1.2">git config branch.&lt;name&gt;.remote &lt;remote&gt; </h3>
 <div class="outline-text-3" id="text-1.2">
-
-
 <p>
 git push 할때 default 지정 
 </p>
 </div>
-
 </div>
-
 <div id="outline-container-1.3" class="outline-3">
 <h3 id="sec-1.3">git log &ndash;walk-reflogs </h3>
 <div class="outline-text-3" id="text-1.3">
-
-
 <p>
 중간에 삭제된 branch나 unreachable한 commit에 대해서 log를 보고자 할때 사용
 </p>
 </div>
-
 </div>
-
 <div id="outline-container-1.4" class="outline-3">
 <h3 id="sec-1.4">git push origin :staging </h3>
 <div class="outline-text-3" id="text-1.4">
-
-
 <p>
 origin repository로부터 staging branch를 삭제 
 </p>
 </div>
-
 </div>
-
 <div id="outline-container-1.5" class="outline-3">
 <h3 id="sec-1.5">subversion repository를 git로 변환 </h3>
 <div class="outline-text-3" id="text-1.5">
-
 <pre class="example">
 authores file 
 jmjeong = Jaemok Jeong&lt;jmjeong@gmail.com&gt;
 </pre>
-
-
 <pre class="example">
 git svn clone --stdlayout --no-metadata --authors=./authores file:///home/svn/happydays 
 </pre>
-
-
 <p>
 from mac
 </p>
 <pre class="example">
 git clone ssh://home.jmjeong.com/~/git/happydays
 </pre>
-
-
 <p>
 from mac to github
 </p>
@@ -86,8 +63,6 @@ from mac to github
 git remote add github git@github.com:jmjeong/happydays.git
 git push github master
 </pre>
-
-
 </div>
 </div>
 </div>
