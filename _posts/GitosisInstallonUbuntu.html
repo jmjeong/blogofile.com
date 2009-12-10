@@ -1,7 +1,7 @@
 ---
 title: Ubuntu(Debian)에 Gitosis Install
 date : 2009/09/03 15:37:00
-updated: 2009/09/25 22:11:00
+updated: 2009/12/08 17:43:00
 categories: git, linux  
 ---
 <div id="outline-container-1" class="outline-2">
@@ -27,7 +27,7 @@ pwconv &amp;&amp; grpconv
 gitosis를 관리한 <i>local host</i> 에서 ssh-keygen을 이용하여 public SSH를 key를 등록한다. 
 </p>
 <pre class="example">
-ssh-keygen -t rss
+ssh-keygen -t rsa
 </pre>
 <p>
 $HOME/.ssh/id\_rsa.pub 파일을 gitosis가 운영될 <i>서버</i> 로 copy한다.

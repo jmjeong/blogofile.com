@@ -18,25 +18,25 @@ License issue로 한참 이야기 중이던데, 최근 받아본 python-mode.el�
 
 
 
-<pre class="src src-emacs-lisp"><span style="color: #b12121;">;; </span><span style="color: #b12121;">python mode
-</span>(load <span style="color: #bb8f8f;">"python-mode"</span> nil t)
-(autoload 'python-mode <span style="color: #bb8f8f;">"python-mode"</span> <span style="color: #bb8f8f;">"Python editing mode."</span> t)
+<pre class="src src-emacs-lisp"><span style="color: #b22222;">;; </span><span style="color: #b22222;">python mode
+</span>(load <span style="color: #8b2252;">"python-mode"</span> nil t)
+(autoload 'python-mode <span style="color: #8b2252;">"python-mode"</span> <span style="color: #8b2252;">"Python editing mode."</span> t)
 
-(setq auto-mode-alist (cons '(<span style="color: #bb8f8f;">"\\.py$"</span> . python-mode) auto-mode-alist))
-(setq interpreter-mode-alist (cons '(<span style="color: #bb8f8f;">"python"</span> . python-mode)
+(setq auto-mode-alist (cons '(<span style="color: #8b2252;">"\\.py$"</span> . python-mode) auto-mode-alist))
+(setq interpreter-mode-alist (cons '(<span style="color: #8b2252;">"python"</span> . python-mode)
                                       interpreter-mode-alist))
-(autoload 'python-mode <span style="color: #bb8f8f;">"python"</span> <span style="color: #bb8f8f;">"Python editing mode."</span> t)
+(autoload 'python-mode <span style="color: #8b2252;">"python"</span> <span style="color: #8b2252;">"Python editing mode."</span> t)
 (setq python-mode-hook
       '(<span style="color: #7f007f;">lambda</span> () (<span style="color: #7f007f;">progn</span>
                     (set-variable 'py-indent-offset 4)
                     (set-variable 'py-smart-indentation nil)
-                    <span style="color: #b12121;">; </span><span style="color: #b12121;">python mode&#50640;&#49436;&#45716; tab&#45824;&#49888; space&#47484;
+                    <span style="color: #b22222;">; </span><span style="color: #b22222;">python mode&#50640;&#49436;&#45716; tab&#45824;&#49888; space&#47484;
 </span>                    (set-variable 'indent-tabs-mode nil) 
                     (eldoc-mode 1))))
 
-<span style="color: #b12121;">;; </span><span style="color: #b12121;">iPython settting
-</span>(setq ipython-command <span style="color: #bb8f8f;">"/opt/local/bin/ipython2.5"</span>)
-(<span style="color: #7f007f;">require</span> '<span style="color: #5f9e9f;">ipython</span>)
+<span style="color: #b22222;">;; </span><span style="color: #b22222;">iPython settting
+</span>(setq ipython-command <span style="color: #8b2252;">"/opt/local/bin/ipython2.5"</span>)
+(<span style="color: #7f007f;">require</span> '<span style="color: #008b8b;">ipython</span>)
 </pre>
 
 

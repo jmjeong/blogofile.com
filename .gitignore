@@ -1,5 +1,6 @@
 *~
-_site/*
-_documentation/themes/blogofile/layout.html
-\#*
 .#*
+/.DS_Store
+\#*
+_documentation/themes/blogofile/layout.html
+_site/*

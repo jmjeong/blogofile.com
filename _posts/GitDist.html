@@ -1,0 +1,20 @@
+---
+title: Git 배포를 위한 압축파일 만들기
+date : 2009/11/06 10:12:00
+updated: 2009/12/04 19:03:00
+categories: git  
+---
+<div id="outline-container-1" class="outline-2">
+
+<div class="outline-text-2" id="text-1">
+<p>
+<code>git-archive</code>명령은 프로젝트 내의 어떤 버젼에서도 tar또는 zip 압축 파일을 만들 수 있다. 
+예를들어, 
+</p>
+<pre class="src src-text">git archive --format=tar --prefix=emacs/ HEAD | gzip &gt; jmjeong-emacs.tar.gz
+</pre>
+<p>
+위 명령은 HEAD 버젼에 해당하는 tar archive 파일을 모으는데, 모든 파일의 앞에다가 <code>emacs/</code>가 추가
+된다. 
+</p></div>
+</div>

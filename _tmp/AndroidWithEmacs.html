@@ -1,0 +1,304 @@
+
+
+<div id="outline-container-1" class="outline-2">
+<h2 id="sec-1">Android with Emacs <span class="timestamp-wrapper"> <span class="timestamp">2009-10-30 Fri 14:00</span></span> &nbsp;&nbsp;&nbsp;<span class="tag"><span class="android">android</span>&nbsp;<span class="emacs">emacs</span></span></h2>
+<div class="outline-text-2" id="text-1">
+
+
+
+</div>
+
+<div id="outline-container-1.1" class="outline-3">
+<h3 id="sec-1.1">필요한 사항 </h3>
+<div class="outline-text-3" id="text-1.1">
+
+
+<ul>
+<li>
+java : 1.5.0 이상
+</li>
+<li>
+ant : Android ant vesion 1.7.x 이상
+</li>
+<li>
+<a href="http://developer.android.com/sdk">android sdk</a> : 1.5.x 이상 
+
+</li>
+</ul>
+</div>
+
+</div>
+
+<div id="outline-container-1.2" class="outline-3">
+<h3 id="sec-1.2">사전 tool 사용법 </h3>
+<div class="outline-text-3" id="text-1.2">
+
+
+
+
+<p>
+android list avd로 현재 만들어진 android virutal device에 대해서 확인하자 
+</p>
+
+
+
+<pre class="src src-sh">jaemok-jeong:tools jmjeong$ ./android list avd
+Available Android Virtual Devices:
+    Name: test
+    Path: /Users/jmjeong/.android/avd/test.avd
+  Target: Android 1.5 (API level 3)
+    Skin: HVGA
+---------
+    Name: tiffany
+    Path: /Users/jmjeong/.android/avd/tiffany.avd
+  Target: Android 1.5 (API level 3)
+    Skin: HVGA
+</pre>
+
+
+
+
+<p>
+없다면 <code>android create avd -n &lt;name&gt; -t &lt;target-number&gt;</code>를 통해서 만들 수 있다. 
+</p>
+
+
+
+<pre class="src src-sh">jaemok-jeong:tools jmjeong$ ./android create avd -n test-e -t 2
+Android 1.5 is a basic Android platform.
+Do you wish to create a custom hardware profile [no]no
+Created AVD <span style="color: #8b2252;">'test-e'</span> based on Android 1.5
+</pre>
+
+
+
+
+<p>
+<code>&lt;target-number&gt;</code>는 <code>android list targets</code>로 확인 가능하다.
+</p>
+
+
+
+<pre class="src src-sh">jaemok-jeong:tools jmjeong$ ./android list targets
+Available Android targets:
+id: 1
+     Name: Android 1.1
+     Type: Platform
+     API level: 2
+     Skins: HVGA (default), HVGA-L, HVGA-P, QVGA-L, QVGA-P
+id: 2
+     Name: Android 1.5
+     Type: Platform
+     API level: 3
+     Skins: HVGA (default), HVGA-L, HVGA-P, QVGA-L, QVGA-P
+id: 3
+     Name: Google APIs
+     Type: Add-On
+     Vendor: Google Inc.
+     Description: Android + Google APIs
+     Based on Android 1.5 (API level 3)
+     Libraries:
+      * com.google.android.maps (maps.jar)
+          API for Google Maps
+     Skins: HVGA (default), HVGA-L, QVGA-P, HVGA-P, QVGA-L
+</pre>
+
+
+
+
+</div>
+
+</div>
+
+<div id="outline-container-1.3" class="outline-3">
+<h3 id="sec-1.3">Android with Emacs </h3>
+<div class="outline-text-3" id="text-1.3">
+
+
+<ul>
+<li>
+<a href="http://www.emacswiki.org/emacs/emdroid.el">emdroid.el</a>
+</li>
+<li>
+<a href="#sec-1.3.1">android-mode</a>
+
+</li>
+</ul>
+
+</div>
+
+<div id="outline-container-1.3.1" class="outline-4">
+<h4 id="sec-1.3.1">Install android-mode </h4>
+<div class="outline-text-4" id="text-1.3.1">
+
+
+<p>
+Android mode를 인스톨하자
+</p>
+
+
+
+<pre class="src src-sh">jaemok-jeong:my-dot-emacs jmjeong$ git clone git://github.com/remvee/android-mode.git
+</pre>
+
+
+
+
+</div>
+
+</div>
+
+<div id="outline-container-1.3.2" class="outline-4">
+<h4 id="sec-1.3.2">Emacs 설정 </h4>
+<div class="outline-text-4" id="text-1.3.2">
+
+
+
+
+
+<pre class="src src-elisp"><span style="color: #b22222;">;; </span><span style="color: #b22222;">android-mode
+</span>(add-to-list 'load-path <span style="color: #8b2252;">"~/my-dot-emacs/android-mode"</span>)
+(<span style="color: #7f007f;">require</span> '<span style="color: #008b8b;">android-mode</span>)
+(setq android-mode-sdk-dir <span style="color: #8b2252;">"~/android-1.5"</span>)
+</pre>
+
+
+
+
+</div>
+
+</div>
+
+<div id="outline-container-1.3.3" class="outline-4">
+<h4 id="sec-1.3.3">동작확인 </h4>
+<div class="outline-text-4" id="text-1.3.3">
+
+
+<p>
+<code>M-x android-start-emulator</code> 를 수행하면 현재 이용 가능한 avd list를 보여준다. 
+</p>
+
+<div class="figure">
+<p><img src="/images/android-start-emulator.png" alt="Android-start-emulator" /></p>
+</div>
+
+</div>
+</div>
+
+</div>
+
+<div id="outline-container-1.4" class="outline-3">
+<h3 id="sec-1.4">Creating an Android Project </h3>
+<div class="outline-text-3" id="text-1.4">
+
+
+
+</div>
+
+<div id="outline-container-1.4.1" class="outline-4">
+<h4 id="sec-1.4.1">Creating new project </h4>
+<div class="outline-text-4" id="text-1.4.1">
+
+
+
+
+
+<pre class="src src-sh">./android create  project <span style="color: #8b2252;">\</span>
+      --target 2 <span style="color: #8b2252;">\</span>
+      --name HelloAndroid <span style="color: #8b2252;">\</span>
+      --path ~/helloAndroid <span style="color: #8b2252;">\</span>
+      --activity helloAndroid <span style="color: #8b2252;">\</span>
+      --package com.example.helloandroid
+
+Created project directory: /Users/jmjeong/helloAndroid
+Created directory /Users/jmjeong/helloAndroid/src/com/example/helloandroid
+Added file /Users/jmjeong/helloAndroid/src/com/example/helloandroid/helloAndroid.java
+Created directory /Users/jmjeong/helloAndroid/gen/com/example/helloandroid
+Created directory /Users/jmjeong/helloAndroid/res
+Created directory /Users/jmjeong/helloAndroid/bin
+Created directory /Users/jmjeong/helloAndroid/libs
+Created directory /Users/jmjeong/helloAndroid/res/values
+Added file /Users/jmjeong/helloAndroid/res/values/strings.xml
+Created directory /Users/jmjeong/helloAndroid/res/layout
+Added file /Users/jmjeong/helloAndroid/res/layout/main.xml
+Added file /Users/jmjeong/helloAndroid/AndroidManifest.xml
+Added file /Users/jmjeong/helloAndroid/build.xml
+Created directory /Users/jmjeong/helloAndroid/tests
+Created directory /Users/jmjeong/helloAndroid/tests/src/com/example/helloandroid
+Added file /Users/jmjeong/helloAndroid/tests/src/com/example/helloandroid/helloAndroidTest.java
+Created directory /Users/jmjeong/helloAndroid/tests/gen/com/example/helloandroid
+Created directory /Users/jmjeong/helloAndroid/tests/res
+Created directory /Users/jmjeong/helloAndroid/tests/bin
+Created directory /Users/jmjeong/helloAndroid/tests/libs
+Added file /Users/jmjeong/helloAndroid/tests/AndroidManifest.xml
+Added file /Users/jmjeong/helloAndroid/tests/build.xml
+</pre>
+
+
+
+
+<p>
+<code>android-mode</code>에서 ~/helloAndroid에 있는 파일을 열면 자동으로 android-mode가 활성화된다. 
+<code>android-mode</code>에서는 다음과 같은 key가 활성화된다. 
+</p>
+
+
+
+<pre class="src src-text">C-c C-c c       android-ant-compile
+C-c C-c d       android-start-ddms
+C-c C-c e       android-start-emulator
+C-c C-c i       android-ant-install
+C-c C-c l       android-logcat
+C-c C-c r       android-ant-reinstall
+C-c C-c u       android-ant-uninstall
+</pre>
+
+
+
+
+<p>
+<code>C-c C-c c</code>를 눌러 compile을 해 보자. 
+</p>
+
+
+
+<pre class="src src-text">-*- mode: compilation; default-directory: "/Users/jmjeong/helloAndroid/" -*-
+Compilation started at Fri Oct 30 15:41:33
+
+ant compile
+Buildfile: build.xml
+    [setup] Project Target: Android 1.5
+    [setup] API level: 3
+
+dirs:
+     [echo] Creating output directories if needed...
+
+resource-src:
+     [echo] Generating R.java / Manifest.java from the resources...
+
+aidl:
+     [echo] Compiling aidl files into Java classes...
+
+compile:
+    [javac] Compiling 1 source file to /Users/jmjeong/helloAndroid/bin/classes
+
+BUILD SUCCESSFUL
+Total time: 0 seconds
+
+Compilation finished at Fri Oct 30 15:41:34
+</pre>
+
+
+
+
+<p>
+<code>C-c C-C i</code>를 눌러서 컴파일된 package를 인스톨하여 emulator에서 확인이 가능하다.
+</p>
+
+<div class="figure">
+<p><img src="/images/helloandroid.png"  alt="/images/helloandroid.png" /></p>
+</div>
+</div>
+</div>
+</div>
+</div>

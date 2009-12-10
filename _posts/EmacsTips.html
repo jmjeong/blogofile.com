@@ -1,7 +1,7 @@
 ---
 title: Emacs Tips
 date : 2009/09/08 14:24:00
-updated: 2009/10/12 12:17:00
+updated: 2009/12/04 19:03:00
 categories: emacs  
 ---
 <div id="outline-container-1" class="outline-2">
@@ -9,8 +9,107 @@ categories: emacs
 <div class="outline-text-2" id="text-1">
 </div>
 <div id="outline-container-1.1" class="outline-3">
-<h3 id="sec-1.1">Emacs lisp expression의 수행 결과를 buffer에 insert할 때 ( <span class="timestamp-wrapper"> <span class="timestamp">2009-10-12 Mon</span></span>) </h3>
+<h3 id="sec-1.1">현재 buffer에 file path를 추가 </h3>
 <div class="outline-text-3" id="text-1.1">
+<p>
+내장 함수로 있을 것 같은데, 찾아봐도 없다.
+</p>
+<pre class="src src-elisp"><span style="color: #b22222;">;; </span><span style="color: #b22222;">insert-path macro
+</span>(<span style="color: #7f007f;">defun</span> <span style="color: #0000ff;">insert-path</span> (file)
+  <span style="color: #8b2252;">"Insert a path into the buffer with completion"</span>
+  (interactive <span style="color: #8b2252;">"GPath: "</span>)
+  (insert (expand-file-name file)))
+
+(global-set-key (kbd <span style="color: #8b2252;">"C-x C-i"</span>) 'insert-path)
+</pre>
+</div>
+</div>
+<div id="outline-container-1.2" class="outline-3">
+<h3 id="sec-1.2">C-s C-w 커서 아래에 있는 단어 검색 </h3>
+<div class="outline-text-3" id="text-1.2">
+</div>
+</div>
+<div id="outline-container-1.3" class="outline-3">
+<h3 id="sec-1.3">info 파일을 local browse하기 <span class="timestamp-wrapper"> <span class="timestamp">2009-10-30 Fri</span></span> </h3>
+<div class="outline-text-3" id="text-1.3">
+<p>
+<code>C-h i</code>에 prefix를 붙이면 파일 지정이 가능하다 
+</p>
+<pre class="src src-block">C-u C-h i common/cedet.info
+</pre>
+</div>
+</div>
+<div id="outline-container-1.4" class="outline-3">
+<h3 id="sec-1.4">Emacs화면을 full screen화면으로 보기 <span class="timestamp-wrapper"> <span class="timestamp">2009-10-26 Mon</span></span> </h3>
+<div class="outline-text-3" id="text-1.4">
+<p>
+<a href="http://www.emacswiki.org/emacs/FullScreen">- EmacsWiki FullScreen</a>. Windows, X, MacOS에 따라 동작방식이 다르다. maxframe.el을 이용해서
+Meta-RET로 toggle 방식으로 처리가 되도록 변경해서 사용했다 
+</p>
+<pre class="src src-elisp"><span style="color: #b22222;">;; </span><span style="color: #b22222;">maxframe.el [2009-10-22]
+</span>(<span style="color: #7f007f;">require</span> '<span style="color: #008b8b;">maxframe</span>)
+<span style="color: #b22222;">;</span><span style="color: #b22222;">(add-hook 'window-setup-hook 'maximize-frame t)
+</span>
+(<span style="color: #7f007f;">defvar</span> <span style="color: #a0522d;">my-fullscreen-p</span> t <span style="color: #8b2252;">"Check if fullscreen is on or off"</span>)
+
+(<span style="color: #7f007f;">defun</span> <span style="color: #0000ff;">my-toggle-fullscreen</span> ()
+  (interactive)
+  (setq my-fullscreen-p (not my-fullscreen-p))
+  (<span style="color: #7f007f;">if</span> my-fullscreen-p
+      (restore-frame)
+    (maximize-frame)))
+
+(global-set-key (kbd <span style="color: #8b2252;">"M-RET"</span>) 'my-toggle-fullscreen)
+</pre>
+</div>
+</div>
+<div id="outline-container-1.5" class="outline-3">
+<h3 id="sec-1.5">Emacs Recent file list 관리 <span class="timestamp-wrapper"> <span class="timestamp">2009-10-21 Wed</span></span> </h3>
+<div class="outline-text-3" id="text-1.5">
+<pre class="src src-elisp"><span style="color: #b22222;">;; </span><span style="color: #b22222;">recentf stuff
+</span>(<span style="color: #7f007f;">require</span> '<span style="color: #008b8b;">recentf</span>)
+(recentf-mode 1)
+(setq recentf-max-menu-items 25)
+(global-set-key <span style="color: #8b2252;">"\C-x\ \C-r"</span> 'recentf-open-files)
+</pre>
+<p>
+<code>\C-x \C-r</code>은 <code>find-file-read-only</code>이 default keymapping으로 정의되어 있다. 이를 최근 열린 파일을
+여는 명령어로 대치하여 사용하자.<sup><a class="footref" name="fnr.1" href="#fn.1">1</a></sup>
+</p>
+</div>
+</div>
+<div id="outline-container-1.6" class="outline-3">
+<h3 id="sec-1.6">Emacs CVS version compile <span class="timestamp-wrapper"> <span class="timestamp">2009-10-13 Tue</span></span> </h3>
+<div class="outline-text-3" id="text-1.6">
+<dl>
+<dt>M-x version</dt><dd>
+<p>
+GNU Emacs 23.1.50.1 (i386-apple-darwin9.8.0, NS apple-appkit-949.54) of 2009-10-13 
+</p>
+</dd>
+</dl>
+<pre class="src src-sh">./configure --enable-carbon-app --with-ns
+</pre>
+<p>
+&ndash;enable-carbon-app option이 없어지고, nsterm.h 파일에서 에러 메시지가 났다. 
+</p>
+<pre class="src src-sh">In file included from nsterm.m:41:
+nsterm.h:57: error: cannot find protocol declaration for &#8216;NSWindowDelegate&#8217;
+nsterm.h:107: error: cannot find protocol declaration for &#8216;NSMenuDelegate&#8217;
+nsterm.h:134: error: cannot find protocol declaration for &#8216;NSToolbarDelegate&#8217;
+nsterm.h:177: error: cannot find protocol declaration for &#8216;NSWindowDelegate&#8217;
+</pre>
+<p>
+해당 declaration을 삭제하고, compile하여 테스트 중이다. 아직은 크게 달라진 것을 못 느끼겠다.  
+Cedet와 ede, eieio, semantic이 built-in으로 들어갔다. Org-mode의 버젼이 Org-mode version 6.31a으로
+올라갔다. Org export중에 에러가 났었는데, 내장된 org-mode로 동작을 하면 아무 이상이 없는 것을
+확인했다.
+</p>
+</div>
+</div>
+<div id="outline-container-1.7" class="outline-3">
+<h3 id="sec-1.7">Emacs lisp expression의 수행 결과를 buffer에 insert할 때 <span class="timestamp-wrapper"> <span class="timestamp">2009-10-12 Mon</span></span> </h3>
+<div class="outline-text-3" id="text-1.7">
 <dl>
 <dt>M-:</dt><dd>
 eval-expression
@@ -28,9 +127,9 @@ eval-buffer
 </p>
 </div>
 </div>
-<div id="outline-container-1.2" class="outline-3">
-<h3 id="sec-1.2">dired mode에서 directory의 파일을 최근 편집된 순으로 보기 </h3>
-<div class="outline-text-3" id="text-1.2">
+<div id="outline-container-1.8" class="outline-3">
+<h3 id="sec-1.8">dired mode에서 directory의 파일을 최근 편집된 순으로 보기 </h3>
+<div class="outline-text-3" id="text-1.8">
 <p>
 Dired-x 모듈을 dired 모드 쓸 때 로딩하고, 원하는 directory에 .dired 파일을 만들어서 local
 variable들을 설정하여 사용한다. 홈페이지의 블로깅 article들을 최근 변경한 순서로 보기 위한 용도로
@@ -38,22 +137,22 @@ variable들을 설정하여 사용한다. 홈페이지의 블로깅 article들�
 </p>
 <pre class="src src-elisp">(add-hook 'dired-load-hook
           (<span style="color: #7f007f;">lambda</span> ()
-          (load <span style="color: #bb8f8f;">"dired-x"</span>)
+          (load <span style="color: #8b2252;">"dired-x"</span>)
 ))
 </pre>
 <p>
 .dired 파일 내용 
 </p>
 <pre class="src src-elisp">Local Variables&#58;
-dired-actual-switches: <span style="color: #bb8f8f;">"-lat"</span>
+dired-actual-switches: <span style="color: #8b2252;">"-lat"</span>
 dired-omit-mode: t
 End:
 </pre>
 </div>
 </div>
-<div id="outline-container-1.3" class="outline-3">
-<h3 id="sec-1.3">현재 창에 보이는 font 크기 조절하기(Emacs 23) ( <span class="timestamp-wrapper"> <span class="timestamp">2009-09-17 Thu</span></span>) </h3>
-<div class="outline-text-3" id="text-1.3">
+<div id="outline-container-1.9" class="outline-3">
+<h3 id="sec-1.9">현재 창에 보이는 font 크기 조절하기(Emacs 23) <span class="timestamp-wrapper"> <span class="timestamp">2009-09-17 Thu</span></span> </h3>
+<div class="outline-text-3" id="text-1.9">
 <p>
 Presentation 중에서 현재 보이는 창의 글자 크기를 조절할때 유용
 </p>
@@ -77,9 +176,9 @@ C-x 0   : Reset the default face height to the original default
 </ul>
 </div>
 </div>
-<div id="outline-container-1.4" class="outline-3">
-<h3 id="sec-1.4">Dired에서 path 이름 복사 </h3>
-<div class="outline-text-3" id="text-1.4">
+<div id="outline-container-1.10" class="outline-3">
+<h3 id="sec-1.10">Dired에서 path 이름 복사 </h3>
+<div class="outline-text-3" id="text-1.10">
 <ul>
 <li>
 w : dired-copy-filename-as-kill
@@ -91,9 +190,9 @@ C-u 0 w : path 이름까지 복사
 </ul>
 </div>
 </div>
-<div id="outline-container-1.5" class="outline-3">
-<h3 id="sec-1.5">EmacsW32에서 bell 소리 없애기 </h3>
-<div class="outline-text-3" id="text-1.5">
+<div id="outline-container-1.11" class="outline-3">
+<h3 id="sec-1.11">EmacsW32에서 bell 소리 없애기 </h3>
+<div class="outline-text-3" id="text-1.11">
 <p>
 X 상에서야 xset b off 하면 나오는 삐삐 거리는 벨 소리를 없앨 수가 있지만, Win32상의 emacs에서는
 없애는 법이 없나 찾아보았다.  가장 손쉽게 할 수 있는 방법이 (setq visible-bell t) 로 하는 방법인데
@@ -106,18 +205,28 @@ X 상에서야 xset b off 하면 나오는 삐삐 거리는 벨 소리를 없앨
 </pre>
 </div>
 </div>
-<div id="outline-container-1.6" class="outline-3">
-<h3 id="sec-1.6">모드별로 font 설정 바꾸기 </h3>
-<div class="outline-text-3" id="text-1.6">
+<div id="outline-container-1.12" class="outline-3">
+<h3 id="sec-1.12">모드별로 font 설정 바꾸기 </h3>
+<div class="outline-text-3" id="text-1.12">
 <p>
 Org 모드에서는 fixed with font인 NanumGodicCoding을 사용하는데, mail에는 가변폭 폰트를 사용하고 싶다. 
-<i>variable-picth-mode</i> 값을 세팅하면 된다(Emacs 23에서만 가능)
+<code>variable-picth-mode</code> 값을 세팅하면 된다(Emacs 23에서만 가능). <sup><a class="footref" name="fnr.2" href="#fn.2">2</a></sup>
 </p>
 <pre class="src src-elisp">(setq message-mode-hook
      (quote (
-     (<span style="color: #7f007f;">lambda</span> () (variable-pitch-mode t)) 
+     (<span style="color: #7f007f;">lambda</span> () (variable-pitch-mode nil)) 
      )))
 </pre>
 </div>
+</div>
+</div>
+<div id="footnotes">
+<h2 class="footnotes">Footnotes: </h2>
+<div id="text-footnotes">
+<p class="footnote"><sup><a class="footnum" name="fn.1" href="#fnr.1">1</a></sup> 막상 자주 접근하는 파일은 전부 shortkey들이 있어서, 자주 쓸 일이 없긴 하다.
+</p>
+<p class="footnote"><sup><a class="footnum" name="fn.2" href="#fnr.2">2</a></sup> 2009-10-15일자 CVS를
+compile해서 사용해 보니 <code>variable-pitch-mode</code> 동작방식이 바뀌었다. 다시 확인을 해 봐야겠다.
+</p>
 </div>
 </div>

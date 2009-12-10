@@ -171,7 +171,7 @@ def pre_build():
         logger.error("There is no __tmp directory")
         return
     post_file_names = [f for f in os.listdir(org_exported_src_dir) \
-                           if f.endswith(".html")]
+                           if f.endswith(".html") and not f.startswith("_")]
     for post_fn in post_file_names:
         post_path = os.path.join(org_exported_src_dir,post_fn)
         logger.info("pre_build : process %s" % post_path)

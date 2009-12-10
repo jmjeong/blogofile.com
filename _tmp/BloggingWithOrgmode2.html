@@ -68,12 +68,12 @@ Syntax highlight 처리 : orgmode에서는 자동으로 처리가 되었는데 b
 <li>
 yasnippet와 emacs write hook을 사용하는 대안 :
 yasnippet용 script로 <a href="http://github.com/jmjeong/my-dot-emacs/blob/master/snippets/org-mode/yaml">yaml</a>을 정의하고, yaml이 blogofile용 header를 입력하게 하고, org mode에서
-파일이 저장될 때 <i>updated:</i> 항목을 갱신하는 방법으로 update를 변경하는 방법 : 페이지 자체에
+파일이 저장될 때 <code>updated:</code> 항목을 갱신하는 방법으로 update를 변경하는 방법 : 페이지 자체에
 불필요한 정보가 들어있다 보니 orgmode exporter가 처리가 안 되는 문제가 있다. 
 
 
 
-<pre class="src src-emacs-lisp">(add-hook 'org-mode-hook
+<pre class="src src-elisp">(add-hook 'org-mode-hook
           (<span style="color: #7f007f;">lambda</span> ()
             (org-set-local 'yas/trigger-key  [tab])
             (define-key yas/keymap [tab] 'yas/next-field-group)
@@ -82,18 +82,18 @@ yasnippet용 script로 <a href="http://github.com/jmjeong/my-dot-emacs/blob/mast
             ))
 
 (<span style="color: #7f007f;">defun</span> <span style="color: #0000ff;">blog-updated-timestamp</span> ()
-  <span style="color: #bb8f8f;">"Upate blog-updated-timestamp"</span>
+  <span style="color: #8b2252;">"Upate blog-updated-timestamp"</span>
   (<span style="color: #7f007f;">save-excursion</span>
     (goto-char (point-min))
     (<span style="color: #7f007f;">let</span> ((state buffer-read-only))
       (<span style="color: #7f007f;">when</span> state (setq buffer-read-only nil))
-      (<span style="color: #7f007f;">if</span> (search-forward-regexp <span style="color: #bb8f8f;">"^updated:"</span> nil t)
+      (<span style="color: #7f007f;">if</span> (search-forward-regexp <span style="color: #8b2252;">"^updated:"</span> nil t)
           (<span style="color: #7f007f;">let</span> ((beg (match-end 0)))
             (end-of-line)
             (delete-region beg (point))
             (goto-char (match-end 0))
             (kill-line)
-            (insert (format-time-string <span style="color: #bb8f8f;">" %Y/%02m/%02d %02H:%02M:%02S\n"</span> (current-time)))
+            (insert (format-time-string <span style="color: #8b2252;">" %Y/%02m/%02d %02H:%02M:%02S\n"</span> (current-time)))
             )
         )
       (<span style="color: #7f007f;">when</span> state (setq buffer-read-only t)))))

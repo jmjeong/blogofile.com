@@ -1,7 +1,7 @@
 
 
 <div id="outline-container-1" class="outline-2">
-<h2 id="sec-1">OpenLDAP(slapd)를 이용하여 Addressbook 구축하기 <span class="timestamp-wrapper"> <span class="timestamp">2009-09-16 Wed 14:33</span></span> &nbsp;&nbsp;&nbsp;<span class="tag"><span class="linux">linux</span>&nbsp;<span class="ldap">ldap</span></span></h2>
+<h2 id="sec-1">OpenLDAP(slapd)를 이용하여 Addressbook 구축하기 <span class="timestamp-wrapper"> <span class="timestamp">2009-09-16 Wed 14:33</span></span> &nbsp;&nbsp;&nbsp;<span class="tag"><span class="linux">linux</span></span></h2>
 <div class="outline-text-2" id="text-1">
 
 
@@ -31,9 +31,9 @@ LDAP 문서에서 주로 언급이 되듯이 LDAP은 시스템 관리나 고급 
 <p>
 LDAP 디렉토리는 계층 구조의 <i>entries</i>들의 집합으로 구성되어 있다. 각 entry들은 
 <i>Object Class</i>에 속하고, <i>key=value</i>라는 <i>attributes</i>들을 갖는다. 각 entry는 <i>Distinguished Name</i> (DN)으로
-구별된다. DN는 comma로 구별된 컴포넌트 리스트로 구성되어 있다. 즉, <b>Example, Inc</b>라는 회사는 
+구별된다. DN는 comma로 구별된 컴포넌트 리스트로 구성되어 있다. 즉, <code>Example, Inc</code>라는 회사는 
 <i>dc=example, dc=com</i>. 이라는 항목을 갖는다. Example Inc.에 속하는 사람은 DN
-<i>cn=person,ou=People,dc=example,dc=com</i>라는 LDAP entry를 가질 수 있다. <b>cn</b>, <b>ou</b>, <b>dc</b>는 각각 <i>Common Name</i>,
+<i>cn=person,ou=People,dc=example,dc=com</i>라는 LDAP entry를 가질 수 있다. <code>cn</code>, <code>ou</code>, <code>dc</code>는 각각 <i>Common Name</i>,
 <i>Organizational Unit</i>, <i>Domain Component</i>를 나타낸다. 
 </p>
 
@@ -70,7 +70,7 @@ Allo LDAPv2 protocol? : YES
 
 
 <p>
-/etc/ldap/ldap.conf 파일의 설정을 맞춰서 <b>ldapsearch</b> 프로그램이 특별한 option 없이 수행할 수
+/etc/ldap/ldap.conf 파일의 설정을 맞춰서 <code>ldapsearch</code> 프로그램이 특별한 option 없이 수행할 수
 있도록 한다. 
 </p>
 <pre class="example">
@@ -245,7 +245,7 @@ nemustech.com 의 경우에는, 최상위 트리 element는 <i>dc=nemustech,dc=c
 </p>
 <p>
 Organizational은 people, groups, hosts, services, networks등의 'organizational unit'으로 나눌 수
-있다. Ldap data은 <b>LDIF</b>라는 텍스트 포맷을 통해 교환된다. 커맨드라인 LDAP utliity를 이용하여 이
+있다. Ldap data은 <code>LDIF</code>라는 텍스트 포맷을 통해 교환된다. 커맨드라인 LDAP utliity를 이용하여 이
 데이타를 추가하거나 변경, 삭제할 수 있다. 
 </p>
 <p>
@@ -267,7 +267,7 @@ objectClass: organizationalUnit
 
 
 <p>
-LDIF를 서버에 로딩하기 위해, <b>slapadd</b>을 이용한다.
+LDIF를 서버에 로딩하기 위해, <code>slapadd</code>을 이용한다.
 </p>
 <pre class="example">
 sudo invoke-rc.d slapd stop
@@ -278,7 +278,7 @@ sudo invoke-rc.d slapd start
 
 
 <p>
-제대로 추가되었는지 확인하기 위해서 <b>ldapsearch</b>를 이용하여 확인을 하자 
+제대로 추가되었는지 확인하기 위해서 <code>ldapsearch</code>를 이용하여 확인을 하자 
 </p>
 
 
@@ -350,7 +350,7 @@ attribute에 매핑시키는 작업이 필요하다.  일반적인 주소록 항
 
 
 <p>
-디렉토리의 각 항목은 구별되는 <b>DN</b>을 필요로 한다. 여기서는 <i>full name</i>을 구별되는 이름으로 사용하자. 
+디렉토리의 각 항목은 구별되는 <code>DN</code>을 필요로 한다. 여기서는 <i>full name</i>을 구별되는 이름으로 사용하자. 
 <i>full name</i>은 commonName, cn으로 정의되어 있다.  Attribute를 등록할때는 그 attribute가 정의되는
 ObjectClass들도 명시를 해야 한다. 
 </p>

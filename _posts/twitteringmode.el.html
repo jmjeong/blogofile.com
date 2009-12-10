@@ -1,0 +1,68 @@
+---
+title: twittering-mode.el patch
+date : 2009/11/12 22:10:00
+updated: 2009/12/04 16:47:00
+categories: emacs, twitter  
+---
+<div id="outline-container-1" class="outline-2">
+
+<div class="outline-text-2" id="text-1">
+<p>
+<a href="http://www.emacswiki.org/emacs/TwitteringMode">Twittering mode</a>는 emacs을 위한 twitter client이다. git에 올라와 있는 0.8 버젼을 사용하고 있는데, 
+두가지 불편한 점이 있어서 <a href="http://github.com/jmjeong/twittering-mode">patch</a>했다. 
+</p>
+<ul>
+<li>
+문제점
+<ol>
+<li>
+140글자를 넘어가는 경우 posting이 안 된다. 다른 client 처럼 몇 자가 넘었는지 표시를 해 줬으면 한다. 
+</li>
+<li>
+bit.ly, tiny.url 처럼 URL 단축화 기능을 지원했으면 한다. 
+</li>
+</ol>
+</li>
+<li>
+해결
+<ol>
+<li>
+<code>twittering-update-status-from-minibuffer</code> 함수에서 posting 하기전에 string 길이가 140보다 크면
+다시 입력을 받게 했다.
+</li>
+<li>
+minibuffer keymap에 Key를 추가하여 &lt;F4&gt;를 누르면 URL을 줄여서 치환하게 했다.  웹을 검색해 보니
+URL 축약 기능을 하는 <a href="http://tinyurl.com/l978uu">smallurl.el</a> 파일이 공개되어 있어서 그 곳에 있는 함수를 이용했다. 
+
+
+
+<pre class="src src-Emacs-Lisp">(defun twittering-update-status-from-minibuffer (&amp;optional init-str
+                                                           reply-to-id)
+  (if (null init-str) (setq init-str <span style="color: #8b2252;">""</span>))
+  (let ((status init-str) (not-posted-p t) (map minibuffer-local-map))
+    (while not-posted-p
+      (define-key map (kbd <span style="color: #8b2252;">"&lt;f4&gt;"</span>) 'smallurl-replace-at-point)
+      (setq status (read-from-minibuffer <span style="color: #8b2252;">"status: "</span> status map nil nil nil t))
+      (while (&lt; 141 (length status))
+        (setq status (read-from-minibuffer (format <span style="color: #8b2252;">"(%d): "</span>
+                                                   (- 140 (length status)))
+                                           status map nil nil nil t)))
+      (setq not-posted-p
+            (not (twittering-update-status-if-not-blank status reply-to-id)))
+      )
+    ))
+</pre>
+</li>
+</ol>
+</li>
+</ul>
+</div>
+<div id="outline-container-1.1" class="outline-3">
+<h3 id="sec-1.1">Updated <span class="timestamp-wrapper"> <span class="timestamp">2009-11-19 Thu</span></span> </h3>
+<div class="outline-text-3" id="text-1.1">
+<p>
+저자에게 patch를 보냈는데, <code>smallurl</code>에 대한 dependency를 없애달라고 요청해 와서, 다시 patch해서
+보냈는데 최근 <a href="http://github.com/hayamiz/twittering-mode">trunk</a>에 반영이 되었다.
+</p></div>
+</div>
+</div>

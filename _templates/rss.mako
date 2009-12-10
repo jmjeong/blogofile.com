@@ -27,7 +27,7 @@
 % else:
       <guid isPermaLink="true">${post.permalink}</guid>
 % endif
-      <description>${post.title}</description>
+      <description>${post.excerpt}</description>
       <content:encoded><![CDATA[${post.content}]]></content:encoded>
     </item>
 % endfor

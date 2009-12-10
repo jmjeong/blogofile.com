@@ -1,7 +1,7 @@
 ---
 title: Orgmode를 이용한 Blogging (최종정리)
 date : 2009/09/24 20:31:00
-updated: 2009/10/12 18:15:00
+updated: 2009/12/04 19:03:00
 categories: emacs, blog  
 ---
 <div id="outline-container-1" class="outline-2">
@@ -71,41 +71,41 @@ CGI script도 필요없고, mysql이나 sqlite3등의 database도 필요하지 �
 <div class="outline-text-3" id="text-1.4">
 <ul>
 <li>
-Source include나 highlight에 대해 별다른 고민을 할 필요가 없이, <i>src</i> <i>tab</i>을 누르면 yaml에 의해
-확장된 <i>#+BEGIN_SRC</i> &hellip; <i>#+END_SRC</i>가 표시된다 
+Source include나 highlight에 대해 별다른 고민을 할 필요가 없이, <code>src</code> <code>tab</code>을 누르면 yaml에 의해
+확장된 <code>#+BEGIN_SRC</code> &hellip; <code>#+END_SRC</code>가 표시된다 
 </li>
 <li>
-<i>C-c C-x f</i>를 누르면 Footenote mark가 표시되고, 자동으로 footnote를 편집할 수 있는 화면으로 바뀐다
+<code>C-c C-x f</code>를 누르면 Footenote mark가 표시되고, 자동으로 footnote를 편집할 수 있는 화면으로 바뀐다
 </li>
 <li>
-Section이나 subsection을 웹으로 publish하고 싶지 않을 때 <i>C-c ;</i>를 누르면 COMMENT mark가 표시되고
+Section이나 subsection을 웹으로 publish하고 싶지 않을 때 <code>C-c ;</code>를 누르면 COMMENT mark가 표시되고
 웹 publish 여부를 결정할 수 있다
 </li>
 <li>
-Emacs에서 <i>F5</i>를 누르면 현재 blog에 posting된 모든 글이 dired mode로 표시된다. Dired의 목록 list는
+Emacs에서 <code>F5</code>를 누르면 현재 blog에 posting된 모든 글이 dired mode로 표시된다. Dired의 목록 list는
 최근 update 순으로 sorting되어 표시되어, 최근 수정한 내역을 알아볼 수 있다. 또한 blog post
 article은 git에 의해 유지 관리가 되므로 각 file별 수정 내역을 확인할 수 있다
 </li>
 <li>
-Web에 publish하기 전에 대략적인 output formating을 알아보고 싶은 경우에는 <i>C-c C-e b</i>를 통해 html
+Web에 publish하기 전에 대략적인 output formating을 알아보고 싶은 경우에는 <code>C-c C-e b</code>를 통해 html
 변환 결과를 확인한다 
 </li>
 <li>
-Emacs에서 <i>F6</i>을 누르면 org -&gt; html 변환, site generation을 수행하고, <i>F7</i>을 누르면 웹 사이트에
-자동으로 upload한다. 변환된 local 결과는 <a href="http://localhost/8080">http://localhost/8080</a> 으로 확인이 가능하다<sup><a class="footref" name="fnr.1" href="#fn.1">1</a></sup>
+Emacs에서 <code>F6</code>을 누르면 org -&gt; html 변환, site generation을 수행하고, <code>F7</code>을 누르면 웹 사이트에
+자동으로 upload한다. 변환된 local 결과는 <code>http://localhost/8080</code> 으로 확인이 가능하다<sup><a class="footref" name="fnr.1" href="#fn.1">1</a></sup>
 </li>
 <li>
 굳이 web에 접속하지 않아도 local로 blog entry들을 확인 가능하고, 편집이 가능하다
 </li>
 <li>
-테이블 편집에 대해 고민하지 않고, orgmode의 <b>아주 훌륭한</b> 테이블 편집 모드를 사용한다
+테이블 편집에 대해 고민하지 않고, orgmode의 <b>훌륭한</b> 테이블 편집 모드를 사용한다
 </li>
 <li>
 작성된 org 파일은 필요에 따라 txt나 latex format으로 변환하여 출력이 가능하다
 </li>
 <li>
 Category는 orgmode의 tag를 이용하여 구현했다. 작성된 article의 tag를 변경하고 싶은 경우에는
-아무데서나 <i>C-c C-q</i>를 눌러 section의 tag를 변경하면 된다
+아무데서나 <code>C-c C-q</code>를 눌러 section의 tag를 변경하면 된다
 </li>
 <li>
 최근 수정된 문서는 blog에서 첫 페이지에 올라오고, 문서의 처음 작성일은 문서의 마지막에 표시된다
@@ -121,8 +121,7 @@ Category는 orgmode의 tag를 이용하여 구현했다. 작성된 article의 ta
 <h2 class="footnotes">Footnotes: </h2>
 <div id="text-footnotes">
 <p class="footnote"><sup><a class="footnum" name="fn.1" href="#fnr.1">1</a></sup> Local에 별도 web server 프로그램이 수행되어 있거나, 'blogofile serve 8080'로 blogofile에 있는
-server 기능을 활용할 수 있다.  Terminal 창에 background로 수행 시켜 놓으면 매번 구동할 필요없이
-잊어버리고 있어도 되니 편하다.
+server 기능을 활용할 수 있다.  Blogofile serve를 background로 수행 시켜 놓으면 매번 구동할 필요없다.
 </p>
 </div>
 </div>

@@ -1,0 +1,39 @@
+---
+title: Emacs Configration
+date : 2009/11/06 16:52:00
+updated: 2009/12/04 19:03:00
+categories: emacs  
+---
+<div id="outline-container-1" class="outline-2">
+
+<div class="outline-text-2" id="text-1">
+<p>
+현재 사용하고 있는 emacs configration이다. <a href="http://github.com/jmjeong/jmjeong-emacs">Github jmjeong-emacs</a>에 최신버젼을 운영 중이다.
+</p>
+<pre class="src src-sh">git clone git://github.com/jmjeong/jmjeong-emacs.git
+</pre>
+<p>
+각 package 설정마다 <code>.el</code>을 분리하여 파일로 만들었고, <code>init.el</code>에서 필요 <code>elisp</code>을 읽는 구조로 변경했다. 
+</p>
+<dl>
+<dt>auto-install/</dt><dd>
+<code>auto-install.el</code> 패키지에서 자동으로 install되는 파일이 저장되는
+folder이다. Upgrade도 auto-install package에 의해 관리된다.
+</dd>
+<dt>vendor/</dt><dd>
+여러 emacs site에서 받은 package들 저장.
+단일 el파일만 저장하고, 나머지는 update.sh에 의해 자동으로 받아오는 구조로 관리하다가
+여러 machine을 옮겨갔을때 설정하는 것이 번거로워서 local copy를 유지하는 방식으로
+변경했다.  <code>update.sh</code>파일을 통해서 필요한 파일은 자동 upgrade.
+
+</dd>
+</dl>
+<p><code>init.el</code> 에서 <code>elisp-root-dir</code>를 download한 디렉토리로 변경하여 사용하면 된다.
+</p>
+<pre class="src src-sh">(defcustom elisp-root-dir <span style="color: #8b2252;">"~/my-dot-emacs"</span>
+  <span style="color: #8b2252;">"The root directory where elisp is installed"</span>)
+</pre>
+<p>
+<code>GNU Emacs 23.1.50.1 (i386-apple-darwin9.8.0)</code>에서 사용 중이다.
+</p></div>
+</div>
